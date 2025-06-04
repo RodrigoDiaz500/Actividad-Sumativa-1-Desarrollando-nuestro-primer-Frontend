@@ -1,0 +1,12 @@
+/* Puedes agregar estilos personalizados aquí si Bootstrap no cubre todo */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Ejemplo de cómo podrías estilizar el logo si no usas img-fluid */
+.logo {
+    max-width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+} 
