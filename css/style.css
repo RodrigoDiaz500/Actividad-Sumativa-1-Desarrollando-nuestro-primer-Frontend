@@ -1,12 +1,219 @@
-/* Puedes agregar estilos personalizados aquí si Bootstrap no cubre todo */
-body {
-    font-family: Arial, sans-serif;
+/* Colores personalizados */
+:root {
+    --matcha-manga-green: #74A12E; /* Verde matcha principal  */
+    --matcha-manga-dark-green: #5A7A22; /* Tono más oscuro de verde matcha para el hover */
+    --bs-primary: #0d6efd; /* Color primario de Bootstrap (azul por defecto) - sin cambios */
+    --bs-warning: #A12E74; /* Rojo complementario al verde matcha - sin cambios */
+    --navbar-button-text: #0a0a0a; /* Blanco para el texto de los botones del navbar */
+    --navbar-button-bg: #FFFFFF; /* Blanco para el fondo de los botones del navbar */
+    --navbar-button-hover-bg: #F0F0F0; /* Un gris muy claro para el hover de los botones blancos */
 }
 
-/* Ejemplo de cómo podrías estilizar el logo si no usas img-fluid */
-.logo {
-    max-width: 150px;
-    height: auto;
-    display: block;
-    margin: 0 auto 20px auto;
-} 
+/* --- Navbar --- */
+.navbar {
+    background-color: #db4b5c; /* Color de fondo oscuro para la barra de navegación */
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand img {
+    max-width: 80px; /* Tamaño del logo */
+    height: 80px; /* Fija la altura igual al ancho para que sea un cuadrado perfecto */
+    object-fit: cover; /* Recorta la imagen para que cubra todo el espacio sin distorsionarse */
+    border-radius: 50%; /* Hace que la imagen sea circular */
+    background-color: #ffffff; /* Fondo verde matcha para el círculo */
+    border: 2px solid var(--matcha-manga-green); /* Borde verde matcha alrededor del logo */
+    padding: 0; /* Quitamos el padding si lo tenía para que el fondo sea el círculo completo */
+    transition: transform 0.3s ease-in-out; /* Animación para el logo */
+}
+
+.navbar-brand img:hover {
+    transform: rotate(5deg) scale(1.1); /* Animación de hover para el logo */  
+}
+
+.navbar-nav .nav-link {
+    color: #030303; /* Color de los enlaces de navegación - sin cambios */
+    transition: color 0.3s ease, transform 0.3s ease; /* Animación para enlaces */
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--matcha-manga-green) !important; /* Color de los enlaces al pasar el ratón */
+    transform: translateX(3px); /* Ligeramente a la derecha */
+}
+
+.navbar-text {
+    color: #000000; /* Color del texto "Bienvenido, [Usuario]" - sin cambios */
+}
+
+/* Estilos para el botón de búsqueda */
+.btn-outline-success {
+    color: var(--navbar-button-text); /* Texto blanco */
+    border-color: var(--navbar-button-bg); /* Borde blanco */
+    background-color: var(--navbar-button-bg); /* Fondo blanco */
+    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+}
+
+.btn-outline-success:hover {
+    background-color: var(--navbar-button-hover-bg); /* Fondo gris claro al pasar el ratón */
+    color: #212529; /* Texto oscuro para contraste */
+    border-color: var(--navbar-button-hover-bg);
+    transform: scale(1.05); /* Un poco más grande */
+}
+
+/* Estilos para los botones de autenticación (Iniciar Sesión, Registrarse, Cerrar Sesión) y los de Catálogo, Cómics, Mangas */
+.btn-nav-auth { /* Nueva clase personalizada */
+    background-color: var(--navbar-button-bg); /* Fondo blanco */
+    color: var(--navbar-button-text); /* Texto blanco */
+    border-color: var(--navbar-button-bg); /* Borde blanco */
+    transition: all 0.3s ease; /* Para la animación de hover */
+}
+
+.btn-nav-auth:hover {
+    background-color: var(--navbar-button-hover-bg); /* Fondo gris claro al pasar el ratón */
+    border-color: var(--navbar-button-hover-bg);
+    color: #212529; /* Texto oscuro para contraste */
+    transform: translateY(-1px); /* Pequeña elevación */
+}
+
+/* --- Cards de Productos --- */
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Animación de escala para las tarjetas de productos */
+    border-radius: 0.5rem; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que la imagen no se desborde si tiene border-radius */
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02); /* Ligeramente hacia arriba y un poco más grande */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px; /* Altura fija para todas las imágenes de la tarjeta */
+    object-fit: contain; /* Mantiene la relación de aspecto y ajusta la imagen dentro del contenedor */
+    background-color: #ffffff; /* Fondo blanco si la imagen no llena el contenedor */
+    padding: 10px; /* Pequeño padding alrededor de la imagen dentro de la tarjeta */
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.1rem; /* Ajuste del tamaño del título */
+    font-weight: bold;
+    min-height: 2.8em; /* Asegura que los títulos ocupen al menos dos líneas para consistencia */
+    line-height: 1.4em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita el título a 2 líneas */
+    line-clamp: 2; /* Propiedad estándar para compatibilidad */
+    -webkit-box-orient: vertical;
+}
+
+.card-text.small {
+    font-size: 0.85rem; /* Hace el texto más pequeño para las descripciones y autores */
+    min-height: 1.5em; /* Ajuste para el autor */
+}
+
+.card-text.small[style*="max-height: 3em"] { /* Estilo específico para la descripción, si aún la tienes */
+    min-height: 3em; /* Asegura un espacio para la descripción */
+    line-height: 1.5em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita la descripción a 2 líneas */
+    line-clamp: 2; /* Propiedad estándar para compatibilidad */
+    -webkit-box-orient: vertical;
+}
+
+.card-text.fw-bold.small { /* Para el precio */
+    font-size: 1rem;
+}
+
+/* Ajustes adicionales para el botón "Añadir" en las cards si quieres que siga el tema del verde matcha */
+.btn-primary { /* Para el botón "Añadir" de las cards */
+    background-color: var(--matcha-manga-green);
+    border-color: var(--matcha-manga-green);
+    color: var(--navbar-button-text); /* Texto blanco para contraste */
+}
+
+.btn-primary:hover {
+    background-color: var(--matcha-manga-dark-green);
+    border-color: var(--matcha-manga-dark-green);
+    color: var(--navbar-button-text);
+    transform: translateY(-2px); /* Ligeramente hacia arriba */
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}
+
+/* --- Botones Genéricos (si no son de navbar o card) --- */
+.btn {
+    border-radius: 0.3rem;
+    font-weight: 600;
+}
+
+/* Opcional: Ajustes para otros botones Bootstrap si quieres que sigan el tema */
+.btn-warning {
+    background-color: var(--matcha-manga-yellow);
+    border-color: var(--matcha-manga-yellow);
+    color: #212529;
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: var(--matcha-manga-dark-yellow);
+    border-color: var(--matcha-manga-dark-yellow);
+    color: #212529;
+}
+
+.btn-success {
+    background-color: #28a745; /* Mantener el verde de Bootstrap o personalizar */
+    border-color: #28a745;
+    transition: all 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: #212529; /* Mismo color que el navbar */
+    color: #f8f9fa;
+    padding-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+footer a {
+    color: #f8f9fa;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--matcha-manga-yellow); /* Color al pasar el ratón en el footer */
+}
+
+footer .text-warning {
+    color: var(--matcha-manga-yellow) !important; /* Asegura el color amarillo para los títulos */
+}
+
+footer .list-inline-item .fab {
+    transition: transform 0.3s ease-in-out, color 0.3s ease;
+}
+
+footer .list-inline-item .fab:hover {
+    transform: scale(1.2);
+    color: var(--matcha-manga-yellow);
+}
+
+/* --- Formularios y Modales --- */
+.form-control:focus {
+    border-color: var(--matcha-manga-yellow);
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25); /* Sombra de enfoque con el color personalizado */
+}
