@@ -248,13 +248,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     itemElement.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-2');
                     itemElement.innerHTML = `
                         <span>${item.title} x ${item.quantity}</span>
-                        <span>$${(item.price * item.quantity).toFixed(2)}</span> // <-- Esta es la línea clave
+                        <span>$${(item.price * item.quantity).toFixed(3)}
                     `;
                     cartItemsDiv.appendChild(itemElement);
                     total += item.price * item.quantity;
                 });
             }
-            if (cartTotalSpan) cartTotalSpan.textContent = total.toFixed(2); // <-- Y esta
+            if (cartTotalSpan) cartTotalSpan.textContent = total.toFixed(3); 
         }
     }
 

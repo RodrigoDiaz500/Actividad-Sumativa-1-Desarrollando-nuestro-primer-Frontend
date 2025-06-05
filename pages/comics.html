@@ -10,47 +10,58 @@
     <link rel="stylesheet" href="../css/style.css"> </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="../img/logo.png" alt="logo" class="img-fluid" style="max-width: 50px; height: auto;"> </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="../index.html">Catálogo Completo</a> </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="comics.html">Cómics</a> </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="mangas.html">Mangas</a> </li>
-                    <li class="nav-item d-none" id="navProfileLink">
-                        <a class="nav-link" href="profile.html">Mi Perfil</a> </li>
-                    <li class="nav-item d-none" id="navAdminLink">
-                        <a class="nav-link" href="admin-dashboard.html">Administración</a> </li>
-                </ul>
-                <ul class="navbar-nav" id="authNavLinks">
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Iniciar Sesión</a> </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.html">Registrarse</a> </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="cartLink">🛒 Carrito (<span id="cartCount">0</span>)</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav d-none" id="loggedInNavLinks">
-                    <li class="nav-item">
-                        <span class="navbar-text me-2">Bienvenido, <span id="loggedInUserName"></span></span>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="logoutLink">Cerrar Sesión</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        <nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        </ul>
+
+    <ul class="navbar-nav d-flex justify-content-center align-items-center flex-grow-1 mb-2 mb-lg-0">
+        <li class="nav-item d-flex align-items-center mx-1"> <a class="navbar-brand p-0 me-2" href="index.html"> <img src="/img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px; height: auto;">
+            </a>
+            <a class="btn btn-nav-auth btn-sm" aria-current="page" href="/index.html">Catálogo Completo</a>
+        </li>
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/comics.html">Cómics</a>
+        </li>
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/mangas.html">Mangas</a>
+        </li>
+        <li class="nav-item mx-1"> <form class="d-flex" role="search" id="searchForm">
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                    id="searchInput">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item d-none mx-1" id="navProfileLink"> <a class="btn btn-nav-auth btn-sm" href="/pages/profile.html">Mi Perfil</a>
+        </li>
+        <li class="nav-item d-none mx-1" id="navAdminLink"> <a class="btn btn-nav-auth btn-sm" href="/pages/admin-dashboard.html">Administración</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav" id="authNavLinks">
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/login.html">Iniciar Sesión</a>
+        </li>
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/register.html">Registrarse</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav" id="loggedInNavLinks">
+        <li class="nav-item mx-1"> <span class="navbar-text me-2">Bienvenido, <span id="loggedInUserName"></span></span>
+        </li>
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="#" id="cartLink">🛒 Carrito (<span id="cartCount">0</span>)</a>
+        </li>
+        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="#" id="logoutLink">Cerrar Sesión</a>
+        </li>
+    </ul>
+</div>
+    </div>
+</nav>
 
     <main class="container mt-4">
         <section class="my-5">
@@ -78,6 +89,70 @@
             </div>
         </div>
     </div>
+
+        <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Matcha Manga</h5>
+                    <p>Tu destino online para cómics y mangas. ¡Explora mundos increíbles y encuentra tu próxima lectura favorita!</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Productos</h5>
+                    <p><a href="/index.html" class="text-white" style="text-decoration: none;">Catálogo Completo</a></p>
+                    <p><a href="/pages/comics.html" class="text-white" style="text-decoration: none;">Cómics</a></p>
+                    <p><a href="/pages/mangas.html" class="text-white" style="text-decoration: none;">Mangas</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Enlaces Útiles</h5>
+                    <p><a href="/pages/profile.html" class="text-white" style="text-decoration: none;">Mi Perfil</a></p>
+                    <p><a href="/pages/login.html" class="text-white" style="text-decoration: none;">Iniciar Sesión</a></p>
+                    <p><a href="/pages/register.html" class="text-white" style="text-decoration: none;">Registrarse</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Ayuda</a></p>
+                </div>
+
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contacto</h5>
+                    <p><i class="fas fa-home me-3"></i> Av. Siempre Viva 742, Springfield</p>
+                    <p><i class="fas fa-envelope me-3"></i> info@matchamanga.com</p>
+                    <p><i class="fas fa-phone me-3"></i> +56 9 1234 5678</p>
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="mb-0">&copy; 2025 Todos los derechos reservados por:
+                        <a href="#" style="text-decoration: none;">
+                            <strong class="text-warning">Matcha Manga</strong>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-end">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script src="../js/script.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
