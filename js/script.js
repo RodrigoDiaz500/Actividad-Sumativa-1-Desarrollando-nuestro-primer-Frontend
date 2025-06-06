@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 22, title: 'Iron Man N#26/145', author: 'Christopher Cantwell, Murewa Ayodele', price: 7.990, image: 'img/comic10.jpg', type: 'comic' },
         { id: 23, title: 'Invencible Vol.27', author: 'Robert Kirkman', price: 25.650, image: 'img/comic11.jpg', type: 'comic' },
         { id: 24, title: 'Warhammer 40k Ahriman Vol. 1: Exilio', author: 'John French', price: 20.900, image: 'img/comic12.jpg', type: 'comic' },
-
     ];
 
     let cart = [];
@@ -54,50 +53,75 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Lógica de la Barra de Navegación Dinámica ---
-    const authNavLinks = document.getElementById('authNavLinks');
-    const loggedInNavLinks = document.getElementById('loggedInNavLinks');
-    const navProfileLink = document.getElementById('navProfileLink');
-    const navAdminLink = document.getElementById('navAdminLink');
-    const loggedInUserNameSpan = document.getElementById('loggedInUserName');
-    const cartCountSpan = document.getElementById('cartCount');
+    // ¡REFERENCIAS A LOS ELEMENTOS INDIVIDUALES DEL DROPDOWN!
+    const loginMenuItem = document.getElementById('loginMenuItem');
+    const registerMenuItem = document.getElementById('registerMenuItem');
+    const loggedInUserNameDropdownContainer = document.getElementById('loggedInUserNameDropdownContainer');
+    const profileMenuItem = document.getElementById('profileMenuItem');
+    const adminMenuItem = document.getElementById('adminMenuItem');
+    const userMenuDivider = document.getElementById('userMenuDivider');
+    const logoutMenuItem = document.getElementById('logoutMenuItem');
+
+    const loggedInUserName = document.getElementById('loggedInUserName'); // Span al lado del ícono de usuario
+    const loggedInUserNameDropdown = document.getElementById('loggedInUserNameDropdown'); // Strong dentro del dropdown
+    const cartCountSpan = document.getElementById('cartCount'); // Contador del carrito
     const searchInput = document.getElementById('searchInput');
     const searchForm = document.getElementById('searchForm');
+    const logoutLink = document.getElementById('logoutLink'); // Enlace de cerrar sesión (dentro de logoutMenuItem)
+
 
     function updateNavbar() {
         const userRole = getCurrentUserRole();
         const userEmail = getCurrentUserEmail();
 
         if (userRole && userEmail && users[userEmail]) {
-            if (authNavLinks) authNavLinks.classList.add('d-none');
-            if (loggedInNavLinks) loggedInNavLinks.classList.remove('d-none');
-            if (loggedInUserNameSpan) loggedInUserNameSpan.textContent = users[userEmail].fullName;
+            // Usuario logueado: Oculta Ingresar/Registrarse, Muestra Bienvenido/MiPerfil/Admin/Cerrar Sesión
+            if (loginMenuItem) loginMenuItem.classList.add('d-none');
+            if (registerMenuItem) registerMenuItem.classList.add('d-none');
 
-            if (userRole === 'client') {
-                if (navProfileLink) navProfileLink.classList.remove('d-none');
-                if (navAdminLink) navAdminLink.classList.add('d-none');
-            } else if (userRole === 'admin') {
-                if (navProfileLink) navProfileLink.classList.remove('d-none');
-                if (navAdminLink) navAdminLink.classList.remove('d-none');
+            if (loggedInUserNameDropdownContainer) loggedInUserNameDropdownContainer.classList.remove('d-none');
+            if (profileMenuItem) profileMenuItem.classList.remove('d-none');
+            if (userMenuDivider) userMenuDivider.classList.remove('d-none');
+            if (logoutMenuItem) logoutMenuItem.classList.remove('d-none');
+
+            // Actualiza el nombre de usuario
+            if (loggedInUserName) loggedInUserName.textContent = users[userEmail].fullName;
+            if (loggedInUserNameDropdown) loggedInUserNameDropdown.textContent = users[userEmail].fullName;
+
+            // Lógica para mostrar/ocultar el enlace de "Administrar"
+            if (userRole === 'admin') {
+                if (adminMenuItem) adminMenuItem.classList.remove('d-none'); // Muestra "Administrar"
+            } else {
+                if (adminMenuItem) adminMenuItem.classList.add('d-none'); // Oculta "Administrar"
             }
         } else {
-            if (authNavLinks) authNavLinks.classList.remove('d-none');
-            if (loggedInNavLinks) loggedInNavLinks.classList.add('d-none');
-            if (navProfileLink) navProfileLink.classList.add('d-none');
-            if (navAdminLink) navAdminLink.classList.add('d-none');
+            // Usuario NO logueado: Muestra Ingresar/Registrarse, Oculta todo lo demás
+            if (loginMenuItem) loginMenuItem.classList.remove('d-none');
+            if (registerMenuItem) registerMenuItem.classList.remove('d-none');
+
+            if (loggedInUserNameDropdownContainer) loggedInUserNameDropdownContainer.classList.add('d-none');
+            if (profileMenuItem) profileMenuItem.classList.add('d-none');
+            if (adminMenuItem) adminMenuItem.classList.add('d-none');
+            if (userMenuDivider) userMenuDivider.classList.add('d-none');
+            if (logoutMenuItem) logoutMenuItem.classList.add('d-none');
+
+            // Limpia el nombre de usuario del navbar si no hay sesión
+            if (loggedInUserName) loggedInUserName.textContent = '';
         }
+        // Siempre actualiza el contador del carrito
         if (cartCountSpan) {
             cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
         }
     }
 
-    updateNavbar();
+    updateNavbar(); // Llama a la función al cargar la página para configurar el navbar inicialmente
 
     // --- Lógica del Catálogo (Principal y Vistas Separadas) ---
     const comicsContainer = document.getElementById('comicsContainer');
     const mangasContainer = document.getElementById('mangasContainer');
     const cartItemsDiv = document.getElementById('cartItems');
     const cartTotalSpan = document.getElementById('cartTotal');
-    const cartLink = document.getElementById('cartLink');
+    const cartLink = document.getElementById('cartLink'); 
     const simulatePurchaseBtn = document.getElementById('simulatePurchaseBtn');
 
     function loadProducts(searchQuery = '') {
@@ -112,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const filteredProducts = comicsData.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(normalizedSearchQuery) ||
-                                item.author.toLowerCase().includes(normalizedSearchQuery);
+                                 item.author.toLowerCase().includes(normalizedSearchQuery);
             
             if (isMainCatalogPage) {
                 return matchesSearch;
@@ -131,15 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         filteredProducts.forEach(item => {
-            // Ajusta la ruta de la imagen para las páginas dentro del directorio 'pages/'
             let imagePath = item.image;
             const currentPagePath = window.location.pathname;
             if (currentPagePath.includes('/pages/')) {
-                // Si la página actual está en 'pages/' (ej., /pages/comics.html), añade '../'
                 imagePath = '../' + item.image;
             }
 
-            // INICIO DE LA MODIFICACIÓN PARA TARJETAS MÁS PEQUEÑAS
             const cardHtml = `
                 <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
                     <div class="card h-100 shadow-sm">
@@ -154,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 </div>
             `;
-            // FIN DE LA MODIFICACIÓN
 
             if (isMainCatalogPage) {
                 if (item.type === 'comic') {
@@ -177,31 +197,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listener para el envío del formulario de búsqueda
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Evita el envío predeterminado del formulario
+            event.preventDefault(); 
             const query = searchInput.value;
-            loadProducts(query); // Recarga los productos con la consulta de búsqueda
+            loadProducts(query); 
         });
     }
 
-    // Event listener para borrar la búsqueda (ej., si el usuario elimina texto del input)
     if (searchInput) {
         searchInput.addEventListener('keyup', function(event) {
-            // Solo activa la búsqueda si se presiona Enter O si el input está vacío
             if (event.key === 'Enter' || this.value.trim() === '') {
                 loadProducts(this.value.trim());
-            } else {
-                // Opcional: implementar un debounce si quieres búsqueda en vivo mientras escriben
-                // let timerId;
-                // clearTimeout(timerId);
-                // timerId = setTimeout(() => {
-                //     loadProducts(this.value.trim());
-                // }, 500); // Espera 500ms después de que se detenga la escritura
-            }
+            } 
         });
-        // También activa la carga inicial con cualquier parámetro de consulta existente (ej., si la página fue enlazada con ?q=...)
         const urlParams = new URLSearchParams(window.location.search);
         const initialQuery = urlParams.get('q') || '';
         if (initialQuery) {
@@ -211,13 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     function addToCart(itemId) {
-        // --- INICIO DE LA MODIFICACIÓN ---
         if (!getCurrentUserRole()) {
-            // Si el usuario no está logueado, muestra una alerta y detiene la función.
             alert('Debes iniciar sesión para añadir productos al carrito y continuar comprando.');
-            return; // Detiene la ejecución de la función aquí.
+            return;
         }
-        // --- FIN DE LA MODIFICACIÓN ---
 
         const itemToAdd = comicsData.find(item => item.id === itemId);
         if (itemToAdd) {
@@ -259,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (comicsContainer || mangasContainer) {
-        // Carga productos inicialmente, potencialmente con una consulta de búsqueda de la URL si existe
         const urlParams = new URLSearchParams(window.location.search);
         const initialQuery = urlParams.get('q') || '';
         loadProducts(initialQuery);
@@ -317,10 +322,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     setCurrentUserRole(user.role);
                     setCurrentUserEmail(user.email);
                     alert(`¡Bienvenido, ${user.fullName} (${user.role})!`);
+                    // Redirección basada en el rol y la página actual
+                    const currentPagePath = window.location.pathname;
                     if (user.role === 'client') {
-                        window.location.href = '../index.html';
+                        if (currentPagePath.includes('/pages/')) {
+                            window.location.href = '../index.html'; // De pages/login.html a index.html
+                        } else {
+                            window.location.href = 'index.html'; // Si ya estás en index.html, recarga
+                        }
                     } else if (user.role === 'admin') {
-                        window.location.href = 'admin-dashboard.html';
+                        if (currentPagePath.includes('/pages/')) {
+                            window.location.href = 'admin-dashboard.html'; // De pages/login.html a pages/admin-dashboard.html
+                        } else {
+                            window.location.href = 'pages/admin-dashboard.html'; // De index.html a pages/admin-dashboard.html
+                        }
                     }
                 } else {
                     alert('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
@@ -480,6 +495,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newPassword.value = '';
                 confirmNewPassword.value = '';
                 profileForm.classList.remove('was-validated');
+                updateNavbar(); // Llama a updateNavbar para reflejar el nombre actualizado si cambió
             }
         });
     }
@@ -506,7 +522,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <td>${product.title}</td>
                     <td>${product.author}</td>
                     <td>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</td>
-                    <td>$${product.price.toFixed(2)}</td>
+                    <td>$${product.price.toFixed(3)}</td>
                     <td>
                         <button class="btn btn-sm btn-warning edit-product me-2" data-id="${product.id}">Editar</button>
                         <button class="btn btn-sm btn-danger delete-product" data-id="${product.id}">Eliminar</button>
@@ -525,7 +541,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('productId').value = productToEdit.id;
                     document.getElementById('productTitle').value = productToEdit.title;
                     document.getElementById('productAuthor').value = productToEdit.author;
-                    document.getElementById('productPrice').value = productToEdit.price;
+                    document.getElementById('productPrice').value = productToEdit.price.toFixed(3);
                     document.getElementById('productImage').value = productToEdit.image;
                     document.getElementById('productType').value = productToEdit.type;
                     productForm.classList.remove('was-validated');
@@ -597,19 +613,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Lógica para cerrar sesión ---
-    const logoutLink = document.getElementById('logoutLink');
     if (logoutLink) {
         logoutLink.addEventListener('click', function(event) {
             event.preventDefault();
+
             sessionStorage.removeItem('userRole');
             sessionStorage.removeItem('currentUserEmail');
-            cart = [];
+            cart = []; // Vacía el carrito al cerrar sesión
+
             alert('Has cerrado sesión correctamente.');
+
             const currentPagePath = window.location.pathname;
             if (currentPagePath.includes('/pages/')) {
-                window.location.href = '../index.html';
+                window.location.href = '../index.html'; // De una página interna a la raíz
             } else {
-                window.location.href = 'index.html';
+                window.location.href = 'index.html'; // Si ya estás en la raíz, recarga
             }
         });
     }

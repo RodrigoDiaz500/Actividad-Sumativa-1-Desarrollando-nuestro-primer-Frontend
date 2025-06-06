@@ -8,7 +8,8 @@
     /* Rojos/Complementarios (originalmente --bs-warning) */
     --matcha-manga-red: #DB4B5C; /* El color de fondo que usabas en el navbar */
     --matcha-manga-dark-red: #B53F4E; /* Tono más oscuro para hover */
-    --matcha-manga-salmon: #E6B8B7; /* Un rosa/salmón suave, complementario */
+    --matcha-manga-salmon: #ecb642; /* Un rosa/salmón suave, complementario */
+    --matcha-manga-dark-salmon: #e68911; /* Un rosa/salmón suave, complementario */
 
     /* Neutros */
     --color-text-dark: #212529; /* Negro oscuro para texto principal */
@@ -17,6 +18,7 @@
     --color-background-dark: #343A40; /* Fondo general oscuro (para footer/navbar) */
     --color-white: #FFFFFF; /* Blanco puro para elementos específicos */
     --color-gray-light: #F0F0F0; /* Gris muy claro para fondos de botones/cards */
+
 
     /* Bootstrap Overrides (para mantener la coherencia) */
     --bs-primary: var(--matcha-manga-green); /* Botones primarios de Bootstrap */
@@ -337,6 +339,10 @@ main {
     margin-bottom: 1rem;
 }
 
+.shadow-lg  {
+    margin-bottom: 100px;
+}
+
 /* Botón "Añadir" en las Cards */
 .btn-primary {
     background-color: var(--matcha-manga-green);
@@ -366,12 +372,12 @@ main {
 .btn-warning {
     background-color: var(--matcha-manga-salmon); /* Usando el nuevo color salmón */
     border-color: var(--matcha-manga-salmon);
-    color: var(--color-text-dark); /* Texto oscuro para contraste */
+    color: var(--color-text-light); /
 }
 
 .btn-warning:hover {
-    background-color: var(--matcha-manga-dark-red); /* Un rojo más oscuro al hover */
-    border-color: var(--matcha-manga-dark-red);
+    background-color: var(--matcha-manga-dark-salmon); /* Un rojo más oscuro al hover */
+    border-color: var(--matcha-manga-dark-salmon);
     color: var(--color-white);
 }
 
@@ -435,6 +441,10 @@ footer .list-inline-item .fab:hover {
 }
 
 .mb-1{
+    text-align: center;
+}
+
+.mb-3 {
     text-align: center;
 }
 /* El resto de tu CSS permanece igual */

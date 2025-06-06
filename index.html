@@ -49,30 +49,30 @@
                 </form>
 
                 <a class="nav-link nav-button-style me-2" href="#" id="cartLink">🛒 Carrito (<span
-                        id="cartCount">0</span>)</a>
+                            id="cartCount">0</span>)</a>
 
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i> </a>
+                            <i class="fas fa-user"></i> <span id="loggedInUserName"></span> </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                             <li id="loginMenuItem"><a class="dropdown-item" href="pages/login.html">Ingresar</a></li>
-                            <li id="registerMenuItem"><a class="dropdown-item"
-                                    href="pages/register.html">Registrarse</a></li>
-
-                            <li id="loggedInUserNameDropdownContainer" class="d-none"><span
-                                    class="dropdown-item-text">Bienvenido, <strong
-                                        id="loggedInUserNameDropdown"></strong></span></li>
-                            <li id="profileMenuItem" class="d-none"><a class="dropdown-item"
-                                    href="pages/profile.html">Mi Perfil</a></li>
-                            <li id="adminMenuItem" class="d-none"><a class="dropdown-item"
-                                    href="pages/admin-dashboard.html">Administración</a></li>
-                            <li class="d-none" id="userMenuDivider">
-                                <hr class="dropdown-divider">
+                            <li id="registerMenuItem"><a class="dropdown-item" href="pages/register.html">Registrarse</a></li>
+                            
+                            <li id="loggedInUserNameDropdownContainer" class="d-none">
+                                <span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdown"></strong></span>
                             </li>
-                            <li id="logoutMenuItem" class="d-none"><a class="dropdown-item" href="#"
-                                    id="logoutLinkDropdown">Cerrar Sesión</a></li>
+                            <li id="profileMenuItem" class="d-none">
+                                <a class="dropdown-item" href="pages/profile.html" id="navProfileLink">Mi Perfil</a>
+                            </li>
+                            <li id="adminMenuItem" class="d-none">
+                                <a class="dropdown-item" href="pages/admin-dashboard.html" id="navAdminLink">Administrar</a>
+                            </li>
+                            <li class="dropdown-divider d-none" id="userMenuDivider"></li>
+                            <li id="logoutMenuItem" class="d-none">
+                                <a class="dropdown-item" href="#" id="logoutLink">Cerrar Sesión</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>
