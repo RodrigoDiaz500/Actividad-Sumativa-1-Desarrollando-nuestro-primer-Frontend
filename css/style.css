@@ -148,7 +148,6 @@ main {
 .navbar #searchForm {
     /* Por defecto, Bootstrap maneja el ancho en d-flex */
     /* En mobile, se ajustará con la media query */
-    /* mx-auto en el HTML (para mobile) */
     width: auto;
     /* Permite que se ajuste al contenido por defecto */
 }
@@ -202,9 +201,12 @@ main {
 
 
 /* --- Media Queries para la Navbar (Responsividad) --- */
+
+
 @media (max-width: 991.98px) {
     /* Para pantallas pequeñas (abajo de lg) */
     .navbar .container-fluid {
+        /* En pantallas pequeñas, el logo y el toggler se manejarán en la raíz del container-fluid */
         justify-content: space-between;
     }
 
@@ -215,103 +217,152 @@ main {
 
     /* Centrar el logo en pantallas pequeñas */
     .navbar-brand {
-        margin-left: auto !important; /* Centra el logo */
-        margin-right: auto !important; /* Centra el logo */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-right: 10% !important;
         order: 1;
     }
 
-    /* Contenedor de la derecha (buscador, carrito, usuario) */
-    .navbar .d-flex.align-items-center.order-2 {
+    /* El contenedor d-flex que antes estaba fuera, ahora está dentro del collapse */
+    .navbar .d-flex.flex-column {
         width: 100%;
-        margin-top: 0.5rem;
-        justify-content: center !important;
-        flex-wrap: wrap;
-    }
-
-    /* Ajuste para el buscador en móvil */
-    #searchForm {
-        width: 90%;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-bottom: 0.5rem;
-    }
-
-    /* Centrar el input del buscador en móviles si la forma está centrada */
-    #searchForm .form-control {
-        flex-grow: 1;
+        margin-top: 1rem;
+        /* Espacio entre los nav-items y esta sección */
+        align-items: center;
+        /* Centra los elementos dentro de este d-flex */
     }
 
     /* Estilos del menú colapsado */
     .navbar-collapse {
         background-color: var(--matcha-manga-red);
+        padding-top: 0.5rem;
+        /* Pequeño padding arriba */
         padding-bottom: 1rem;
         border-radius: 0 0 0.5rem 0.5rem;
         width: 100%;
-        order: 3;
+        order: 2;
+        /* Después del logo y toggler */
         margin-top: 1rem;
+        /* Espacio debajo del logo y toggler */
     }
 
-    /* Asegura que los botones del navbar colapsado (Catálogo, Mangas, Cómics) tengan el mismo tamaño */
-    #navbarNav .nav-item {
-        width: 90%; /* Ajusta el ancho para que todos los botones sean iguales */
-        margin: 0.5rem auto; /* Centra los elementos y da un margen entre ellos */
-        text-align: center; /* Centra el texto dentro del botón */
+    /* Ajuste para el buscador en móvil */
+    #searchForm {
+        width: 90%;
+        /* Ajusta el ancho para el formulario de búsqueda */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 0.8rem;
+        /* Espacio entre el buscador y el siguiente botón */
     }
 
-    #navbarNav .nav-item .nav-link {
-        display: block; /* Para que ocupe todo el ancho del nav-item */
-        width: 100%; /* Asegura que el enlace ocupe el 100% del nav-item */
-        box-sizing: border-box; /* Incluye padding y border en el ancho */
+    /* Asegura que el input del buscador ocupe el 100% menos el botón */
+    #searchForm .form-control {
+        flex-grow: 1;
     }
 
-    /* Asegura que los dropdown-item tengan el mismo tamaño y centrado */
-    .navbar .dropdown-menu {
-        width: 90%; /* Ancho del menú desplegable */
-        margin: 0.5rem auto; /* Centra el menú desplegable */
-        left: 0; /* Asegura el centrado */
-        right: 0; /* Asegura el centrado */
-        float: none; /* Deshabilita el flotado para permitir centrado con margin auto */
-        position: absolute; /* Permite posicionamiento con left/right/margin auto */
-        transform: translateX(0); /* Resetea cualquier posible transformación */
-        padding: 0.5rem 0; /* Ajusta el padding si es necesario */
+    /* Estilo para el botón de buscar dentro del formulario */
+    #searchForm .btn {
+        flex-shrink: 0;
+        /* Evita que el botón se encoja */
     }
 
-    .navbar .dropdown-item,
-    .navbar .dropdown-item-text {
+
+    /* === MODIFICACIONES PARA BOTONES DENTRO DEL COLLAPSE === */
+    /* Apunta a todos los nav-items y al contenedor del dropdown para darles un ancho uniforme */
+    .navbar-collapse .navbar-nav .nav-item,
+    .navbar-collapse .nav-link.nav-button-style,
+    /* Específicamente el botón de Carrito */
+    .navbar-collapse .nav-item.dropdown
+        /* El contenedor del dropdown de usuario */
+        {
+        width: 90%;
+        /* Ancho uniforme para todos los "botones" colapsados */
+        margin: 0.4rem auto;
+        /* Centra y da espacio vertical */
+        text-align: center;
+        /* Centra el texto (para texto simple) */
+    }
+
+    /* Asegura que los enlaces dentro de los nav-items ocupen todo el ancho */
+    .navbar-collapse .navbar-nav .nav-item .nav-link {
         display: block;
-        width: 100%; /* Ocupa el 100% del ancho del dropdown-menu */
+        width: 100%;
+        box-sizing: border-box;
+        /* Incluye padding y border en el ancho */
+    }
+
+    /* Estilo de botón para el enlace de Carrito (0) y el toggle de usuario */
+    .navbar-collapse .nav-link.nav-button-style,
+    /* Carrito (0) */
+    .navbar-collapse .dropdown-toggle.nav-button-style {
+        /* Admin Ejemplo */
+        background-color: var(--color-white);
+        /* Fondo blanco para el botón */
+        color: var(--color-text-light) !important;
+        /* Texto oscuro */
+        border: 1px solid var(--matcha-manga-light-green);
+        /* Borde verde claro */
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+
+        /* === NUEVO: Flexbox para centrar icono y texto y dar espacio uniforme === */
+        display: flex;
+        /* Habilita flexbox para alinear contenido interno */
+        justify-content: center;
+        /* Centra el contenido horizontalmente */
+        align-items: center;
+        /* Centra el contenido verticalmente */
+        /* Se podría usar 'gap' para un espacio automático entre el ícono y el texto: gap: 0.5rem; */
+    }
+
+    /* Ajuste del margen para el ícono dentro de estos botones para el espacio */
+    .navbar-collapse .nav-link.nav-button-style .fas,
+    .navbar-collapse .dropdown-toggle.nav-button-style .fas {
+        margin-right: 0.5rem;
+        /* Espacio entre el ícono y el texto */
+    }
+
+
+    /* Asegura que los elementos del dropdown del usuario también tengan el mismo estilo */
+    .navbar-collapse .dropdown-menu {
+        width: 100%;
+        /* Ocupa el 100% de su contenedor (.nav-item.dropdown) */
+        margin: 0;
+        /* Elimina márgenes extra */
+        left: 0;
+        right: 0;
+        float: none;
+        position: relative;
+        /* Posicionamiento relativo dentro del flujo */
+        transform: none;
+        padding: 0.5rem 0;
+        border: 1px solid var(--matcha-manga-light-green);
+        border-top: none;
+        /* Evita doble borde si está pegado al toggle */
+        border-radius: 0 0 0.5rem 0.5rem;
+        /* Solo la parte inferior redondeada */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-collapse .dropdown-item,
+    .navbar-collapse .dropdown-item-text {
+        display: block;
+        width: 100%;
         text-align: center;
         padding: 0.75rem 1.5rem;
-        box-sizing: border-box; /* Incluye padding y border en el ancho */
+        box-sizing: border-box;
     }
 
-    /* Mantener el color de texto negro y hover igual que en pantalla grande para el dropdown */
-    .navbar .dropdown-item:hover,
-    .navbar .dropdown-item:focus {
-        background-color: var(--matcha-manga-light-green); /* Fondo verde claro al pasar el ratón */
-        color: var(--color-text-dark) !important; /* Texto oscuro para contraste */
-    }
-
-    /* Ajuste para los iconos de carrito y usuario en móvil */
-    .navbar .nav-link.nav-button-style.me-2 {
-        margin-bottom: 0.5rem;
-        margin-right: 0.5rem !important;
-        margin-left: 0.5rem !important;
-    }
-
-    .navbar-nav{
-        width: max-content;
-        height: max-content;
-
-    }
-
-    .logo{
-        align-items: center;
-        padding-top: 10px;
-        justify-content: center;
-    }
-    .mb-2{
-        width: auto;
+    /* Hover para los items del dropdown */
+    .navbar-collapse .dropdown-item:hover,
+    .navbar-collapse .dropdown-item:focus {
+        background-color: var(--matcha-manga-light-green);
+        color: var(--color-text-dark) !important;
     }
 }
 
@@ -331,28 +382,67 @@ main {
         order: 0;
     }
 
-    /* Contenedor de la derecha (buscador, carrito, usuario) */
-    .navbar .d-flex.align-items-center.order-2 {
-        order: 2;
-        margin-left: auto !important;
-        margin-right: 0 !important;
-        width: auto;
+    /* El contenedor d-flex que contiene búsqueda, carrito, usuario */
+    .navbar .d-flex.flex-column.flex-lg-row {
+        flex-direction: row !important;
+        /* Asegura fila en desktop */
+        align-items: center !important;
+        width: auto !important;
+        margin-top: 0 !important;
+        /* order: 2; Removido para permitir un mejor centrado */
+        /* margin-left: auto; Removido para permitir un mejor centrado */
     }
 
     /* El navbar-collapse contiene los enlaces centrales */
     .navbar-collapse {
         display: flex !important;
-        flex-grow: 0;
-        justify-content: flex-start;
+        flex-grow: 1; /* Permite que el collapse crezca y ocupe el espacio */
+        justify-content: center; /* Centra todo el contenido dentro del collapse */
         order: 1;
-        margin-left: 1rem;
-        margin-right: auto;
+        margin-left: 0; /* Aseguramos que no haya margen automático inicial */
+        margin-right: 0; /* Aseguramos que no haya margen automático final */
+        background-color: transparent; /* Fondo transparente en desktop */
+        padding-top: 0;
+        padding-bottom: 0;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    /* Ajustes para el buscador en desktop */
+    #searchForm {
+        margin-bottom: 0 !important;
+        margin-right: 1rem;
+        /* Espacio entre buscador y carrito */
+        width: auto !important;
     }
 
     /* Para que los botones se separen un poco más en desktop */
     .navbar .nav-item {
         margin-left: 0.3rem;
         margin-right: 0.3rem;
+    }
+
+    /* Ajuste para el dropdown de usuario en desktop */
+    .navbar .nav-item.dropdown {
+        margin-left: 0.5rem;
+        /* Espacio entre carrito y usuario */
+    }
+
+    /* El dropdown menu debe ser absoluto en desktop */
+    .navbar .dropdown-menu {
+        position: absolute;
+        width: auto;
+        /* Ancho automático en desktop */
+        left: auto;
+        right: 0;
+        /* Alinea a la derecha del botón */
+        float: none;
+        transform: none;
+        border-top: 1px solid var(--color-gray-light);
+        /* Borde superior en desktop */
+        border-radius: 0.5rem;
+        /* Redondeado completo */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -596,9 +686,12 @@ h2::after {
 
 /* Modificaciones solicitadas */
 h2 {
-    color: var(--color-text-dark); /* Texto negro por defecto */
+    color: var(--color-text-dark);
+    /* Texto negro por defecto */
 }
 
 h2:hover {
-    color: var(--color-text-dark); /* Mantiene el texto negro en hover */
+    color: var(--color-text-dark);
+    /* Mantiene el texto negro en hover */
 }
+

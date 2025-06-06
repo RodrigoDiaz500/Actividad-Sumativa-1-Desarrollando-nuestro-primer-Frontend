@@ -23,11 +23,11 @@
             </button>
 
             <a class="navbar-brand p-0 mx-auto order-1 order-lg-0" href="index.html">
-                <img src="img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px; height: auto;">
+                <img src="img/logo.png" alt="logo" class="img-fluid">
             </a>
 
             <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
-                <ul class="navbar-nav mb-2 mb-lg-0">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link nav-button-style" aria-current="page" href="index.html">Catálogo Completo</a>
                     </li>
@@ -38,44 +38,41 @@
                         <a class="nav-link nav-button-style" href="pages/comics.html">Cómics</a>
                     </li>
                 </ul>
-            </div>
 
-            <div
-                class="d-flex align-items-center order-2 order-lg-last flex-grow-1 flex-lg-grow-0 justify-content-center justify-content-lg-end mt-2 mt-lg-0">
-                <form class="d-flex me-2" role="search" id="searchForm">
-                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
-                        id="searchInput">
-                    <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</button>
-                </form>
+                <div class="d-flex flex-column flex-lg-row align-items-center w-100 w-lg-auto mt-2 mt-lg-0">
+                    <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchForm">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInput">
+                        <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</button>
+                    </form>
 
-                <a class="nav-link nav-button-style me-2" href="#" id="cartLink">🛒 Carrito (<span
-                            id="cartCount">0</span>)</a>
+                    <a class="nav-link nav-button-style mb-2 mb-lg-0" href="#" id="cartLink">
+                        <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCount">0</span>)
+                    </a>
 
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdown" role="button"
+                    <div class="nav-item dropdown w-90 w-lg-auto"> <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i> <span id="loggedInUserName"></span> </a>
+                            <i class="fas fa-user"></i> <span id="loggedInUserName">Admin Ejemplo</span> 
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li id="loginMenuItem"><a class="dropdown-item" href="pages/login.html">Ingresar</a></li>
-                            <li id="registerMenuItem"><a class="dropdown-item" href="pages/register.html">Registrarse</a></li>
+                            <li id="loginMenuItem"><a class="dropdown-item" href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Ingresar</a></li>
+                            <li id="registerMenuItem"><a class="dropdown-item" href="pages/register.html"><i class="fas fa-user-plus"></i> Registrarse</a></li>
                             
                             <li id="loggedInUserNameDropdownContainer" class="d-none">
                                 <span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdown"></strong></span>
                             </li>
                             <li id="profileMenuItem" class="d-none">
-                                <a class="dropdown-item" href="pages/profile.html" id="navProfileLink">Mi Perfil</a>
+                                <a class="dropdown-item" href="pages/profile.html" id="navProfileLink"><i class="fas fa-user"></i> Mi Perfil</a>
                             </li>
                             <li id="adminMenuItem" class="d-none">
-                                <a class="dropdown-item" href="pages/admin-dashboard.html" id="navAdminLink">Administrar</a>
+                                <a class="dropdown-item" href="pages/admin-dashboard.html" id="navAdminLink"><i class="fas fa-cog"></i> Administrar</a>
                             </li>
                             <li class="dropdown-divider d-none" id="userMenuDivider"></li>
                             <li id="logoutMenuItem" class="d-none">
-                                <a class="dropdown-item" href="#" id="logoutLink">Cerrar Sesión</a>
+                                <a class="dropdown-item" href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                             </li>
                         </ul>
-                    </li>
-                </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
