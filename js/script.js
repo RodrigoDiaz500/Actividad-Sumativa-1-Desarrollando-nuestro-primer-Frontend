@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- Lógica de la Barra de Navegación Dinámica ---
-    // ¡REFERENCIAS A LOS ELEMENTOS INDIVIDUALES DEL DROPDOWN!
     const loginMenuItem = document.getElementById('loginMenuItem');
     const registerMenuItem = document.getElementById('registerMenuItem');
     const loggedInUserNameDropdownContainer = document.getElementById('loggedInUserNameDropdownContainer');
@@ -62,12 +61,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const userMenuDivider = document.getElementById('userMenuDivider');
     const logoutMenuItem = document.getElementById('logoutMenuItem');
 
-    const loggedInUserName = document.getElementById('loggedInUserName'); // Span al lado del ícono de usuario
-    const loggedInUserNameDropdown = document.getElementById('loggedInUserNameDropdown'); // Strong dentro del dropdown
-    const cartCountSpan = document.getElementById('cartCount'); // Contador del carrito
+    const loggedInUserName = document.getElementById('loggedInUserName');
+    const loggedInUserNameDropdown = document.getElementById('loggedInUserNameDropdown');
+    const cartCountSpan = document.getElementById('cartCount');
     const searchInput = document.getElementById('searchInput');
     const searchForm = document.getElementById('searchForm');
-    const logoutLink = document.getElementById('logoutLink'); // Enlace de cerrar sesión (dentro de logoutMenuItem)
+    const logoutLink = document.getElementById('logoutLink');
 
 
     function updateNavbar() {
@@ -84,15 +83,13 @@ document.addEventListener('DOMContentLoaded', function() {
             if (userMenuDivider) userMenuDivider.classList.remove('d-none');
             if (logoutMenuItem) logoutMenuItem.classList.remove('d-none');
 
-            // Actualiza el nombre de usuario
             if (loggedInUserName) loggedInUserName.textContent = users[userEmail].fullName;
             if (loggedInUserNameDropdown) loggedInUserNameDropdown.textContent = users[userEmail].fullName;
 
-            // Lógica para mostrar/ocultar el enlace de "Administrar"
             if (userRole === 'admin') {
-                if (adminMenuItem) adminMenuItem.classList.remove('d-none'); // Muestra "Administrar"
+                if (adminMenuItem) adminMenuItem.classList.remove('d-none');
             } else {
-                if (adminMenuItem) adminMenuItem.classList.add('d-none'); // Oculta "Administrar"
+                if (adminMenuItem) adminMenuItem.classList.add('d-none');
             }
         } else {
             // Usuario NO logueado: Muestra Ingresar/Registrarse, Oculta todo lo demás
@@ -105,24 +102,25 @@ document.addEventListener('DOMContentLoaded', function() {
             if (userMenuDivider) userMenuDivider.classList.add('d-none');
             if (logoutMenuItem) logoutMenuItem.classList.add('d-none');
 
-            // Limpia el nombre de usuario del navbar si no hay sesión
             if (loggedInUserName) loggedInUserName.textContent = '';
         }
-        // Siempre actualiza el contador del carrito
         if (cartCountSpan) {
             cartCountSpan.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
         }
     }
 
-    updateNavbar(); // Llama a la función al cargar la página para configurar el navbar inicialmente
+    updateNavbar();
 
     // --- Lógica del Catálogo (Principal y Vistas Separadas) ---
     const comicsContainer = document.getElementById('comicsContainer');
     const mangasContainer = document.getElementById('mangasContainer');
     const cartItemsDiv = document.getElementById('cartItems');
     const cartTotalSpan = document.getElementById('cartTotal');
-    const cartLink = document.getElementById('cartLink'); 
+    const cartLink = document.getElementById('cartLink');
     const simulatePurchaseBtn = document.getElementById('simulatePurchaseBtn');
+    // NUEVA REFERENCIA AL BOTÓN "Limpiar Carrito"
+    const clearCartBtn = document.getElementById('clearCartBtn');
+
 
     function loadProducts(searchQuery = '') {
         const isComicsPage = comicsContainer && !mangasContainer;
@@ -145,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else if (isMangasPage) {
                 return matchesSearch && item.type === 'manga';
             }
-            return false; // No debería ocurrir si existe un contenedor
+            return false;
         });
 
         if (filteredProducts.length === 0) {
@@ -199,9 +197,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (searchForm) {
         searchForm.addEventListener('submit', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
             const query = searchInput.value;
-            loadProducts(query); 
+            loadProducts(query);
         });
     }
 
@@ -209,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         searchInput.addEventListener('keyup', function(event) {
             if (event.key === 'Enter' || this.value.trim() === '') {
                 loadProducts(this.value.trim());
-            } 
+            }
         });
         const urlParams = new URLSearchParams(window.location.search);
         const initialQuery = urlParams.get('q') || '';
@@ -235,6 +233,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             updateCartDisplay();
         }
+    }
+
+    // Función para limpiar el carrito
+    function clearCart() {
+        cart = []; // Vacía el array del carrito
+        updateCartDisplay(); // Actualiza la visualización
+        alert('El carrito ha sido vaciado.');
     }
 
     function updateCartDisplay() {
@@ -275,9 +280,14 @@ document.addEventListener('DOMContentLoaded', function() {
         cartLink.addEventListener('click', function(event) {
             event.preventDefault();
             const cartModal = new bootstrap.Modal(document.getElementById('cartModal'));
-            updateCartDisplay();
+            updateCartDisplay(); // Asegura que el modal siempre muestre la última versión del carrito
             cartModal.show();
         });
+    }
+
+    // Event Listener para el botón "Limpiar Carrito"
+    if (clearCartBtn) {
+        clearCartBtn.addEventListener('click', clearCart);
     }
 
     if (simulatePurchaseBtn) {
@@ -322,19 +332,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     setCurrentUserRole(user.role);
                     setCurrentUserEmail(user.email);
                     alert(`¡Bienvenido, ${user.fullName} (${user.role})!`);
-                    // Redirección basada en el rol y la página actual
                     const currentPagePath = window.location.pathname;
                     if (user.role === 'client') {
                         if (currentPagePath.includes('/pages/')) {
-                            window.location.href = '../index.html'; // De pages/login.html a index.html
+                            window.location.href = '../index.html';
                         } else {
-                            window.location.href = 'index.html'; // Si ya estás en index.html, recarga
+                            window.location.href = 'index.html';
                         }
                     } else if (user.role === 'admin') {
                         if (currentPagePath.includes('/pages/')) {
-                            window.location.href = 'admin-dashboard.html'; // De pages/login.html a pages/admin-dashboard.html
+                            window.location.href = 'admin-dashboard.html';
                         } else {
-                            window.location.href = 'pages/admin-dashboard.html'; // De index.html a pages/admin-dashboard.html
+                            window.location.href = 'pages/admin-dashboard.html';
                         }
                     }
                 } else {
@@ -495,7 +504,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 newPassword.value = '';
                 confirmNewPassword.value = '';
                 profileForm.classList.remove('was-validated');
-                updateNavbar(); // Llama a updateNavbar para reflejar el nombre actualizado si cambió
+                updateNavbar();
             }
         });
     }
@@ -556,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (confirm('¿Estás seguro de que quieres eliminar este producto? Esta acción no se puede deshacer.')) {
                     comicsData = comicsData.filter(p => p.id !== productIdToDelete);
                     loadAdminProducts();
-                    if (comicsContainer || mangasContainer) loadProducts(); // Recarga las vistas del catálogo si están abiertas
+                    if (comicsContainer || mangasContainer) loadProducts();
                     alert('Producto eliminado correctamente.');
                 }
             });
@@ -605,29 +614,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('Nuevo producto agregado con éxito.');
                 }
                 loadAdminProducts();
-                if (comicsContainer || mangasContainer) loadProducts(); // Recarga las vistas del catálogo
-                if (productModalInstance) productModalInstance.hide(); // Cierra el modal de producto
+                if (comicsContainer || mangasContainer) loadProducts();
+                if (productModalInstance) productModalInstance.hide();
                 productForm.classList.remove('was-validated');
             }
         });
     }
 
-    // --- Lógica para cerrar sesión ---
     if (logoutLink) {
         logoutLink.addEventListener('click', function(event) {
             event.preventDefault();
 
             sessionStorage.removeItem('userRole');
             sessionStorage.removeItem('currentUserEmail');
-            cart = []; // Vacía el carrito al cerrar sesión
-
+            cart = []; // Vacía el carrito también al cerrar sesión
+            
             alert('Has cerrado sesión correctamente.');
 
             const currentPagePath = window.location.pathname;
             if (currentPagePath.includes('/pages/')) {
-                window.location.href = '../index.html'; // De una página interna a la raíz
+                window.location.href = '../index.html';
             } else {
-                window.location.href = 'index.html'; // Si ya estás en la raíz, recarga
+                window.location.href = 'index.html';
             }
         });
     }

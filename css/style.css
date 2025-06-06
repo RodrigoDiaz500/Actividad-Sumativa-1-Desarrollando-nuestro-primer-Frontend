@@ -396,6 +396,7 @@ main {
     background-color: var(--matcha-manga-green);
     border-color: var(--matcha-manga-green);
     color: var(--color-white);
+    width: 100%; /* Botón de éxito ocupa todo el ancho */
 }
 
 .btn-success:hover {
