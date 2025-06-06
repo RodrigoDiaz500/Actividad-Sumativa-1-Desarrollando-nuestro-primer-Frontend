@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // --- INICIO DE LA MODIFICACIÓN ---
         if (!getCurrentUserRole()) {
             // Si el usuario no está logueado, muestra una alerta y detiene la función.
-            alert('Debes registrarte o iniciar sesión para añadir productos al carrito y continuar comprando.');
+            alert('Debes iniciar sesión para añadir productos al carrito y continuar comprando.');
             return; // Detiene la ejecución de la función aquí.
         }
         // --- FIN DE LA MODIFICACIÓN ---

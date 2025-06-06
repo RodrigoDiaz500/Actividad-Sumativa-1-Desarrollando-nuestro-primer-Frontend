@@ -1,206 +1,424 @@
-/* Colores personalizados */
+/* Paleta de Colores y Variables Personalizadas */
 :root {
-    --matcha-manga-green: #74A12E; /* Verde matcha principal  */
-    --matcha-manga-dark-green: #5A7A22; /* Tono más oscuro de verde matcha para el hover */
-    --bs-primary: #0d6efd; /* Color primario de Bootstrap (azul por defecto) - sin cambios */
-    --bs-warning: #A12E74; /* Rojo complementario al verde matcha - sin cambios */
-    --navbar-button-text: #0a0a0a; /* Blanco para el texto de los botones del navbar */
-    --navbar-button-bg: #FFFFFF; /* Blanco para el fondo de los botones del navbar */
-    --navbar-button-hover-bg: #F0F0F0; /* Un gris muy claro para el hover de los botones blancos */
+    /* Verdes Matcha */
+    --matcha-manga-green: #74A12E; /* Verde matcha principal */
+    --matcha-manga-dark-green: #5A7A22; /* Tono más oscuro para hover/activos */
+    --matcha-manga-light-green: #90EE90; /* Un verde más claro para detalles o contrastes suaves */
+
+    /* Rojos/Complementarios (originalmente --bs-warning) */
+    --matcha-manga-red: #DB4B5C; /* El color de fondo que usabas en el navbar */
+    --matcha-manga-dark-red: #B53F4E; /* Tono más oscuro para hover */
+    --matcha-manga-salmon: #E6B8B7; /* Un rosa/salmón suave, complementario */
+
+    /* Neutros */
+    --color-text-dark: #212529; /* Negro oscuro para texto principal */
+    --color-text-light: #F8F9FA; /* Blanco grisáceo para texto sobre fondos oscuros */
+    --color-background-light: #F8F9FA; /* Fondo general claro */
+    --color-background-dark: #343A40; /* Fondo general oscuro (para footer/navbar) */
+    --color-white: #FFFFFF; /* Blanco puro para elementos específicos */
+    --color-gray-light: #F0F0F0; /* Gris muy claro para fondos de botones/cards */
+
+    /* Bootstrap Overrides (para mantener la coherencia) */
+    --bs-primary: var(--matcha-manga-green); /* Botones primarios de Bootstrap */
+    --bs-warning: var(--matcha-manga-salmon); /* Usando el salmón para la advertencia si aplica */
+    --bs-danger: var(--matcha-manga-red); /* Color de eliminación */
+    --bs-success: var(--matcha-manga-green); /* Color de éxito */
 }
 
-/* --- Navbar --- */
+/* --- Estilos Generales del Cuerpo (Body) --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el footer siempre esté al final */
+}
+
+main {
+    flex-grow: 1; /* Ocupa el espacio restante para empujar el footer hacia abajo */
+}
+
+/* --- Barra de Navegación (Navbar) --- */
 .navbar {
-    background-color: #db4b5c; /* Color de fondo oscuro para la barra de navegación */
+    background-color: var(--matcha-manga-red); /* El color rojizo que tenías */
     padding: 0.5rem 1rem;
+    border-bottom: 3px solid var(--matcha-manga-green); /* Borde verde como acento */
 }
 
+/* Contenedor fluido para la navbar, usar flexbox */
+.navbar .container-fluid {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    align-items: center;
+}
+
+/* Logo de la Navbar */
 .navbar-brand img {
-    max-width: 80px; /* Tamaño del logo */
-    height: 80px; /* Fija la altura igual al ancho para que sea un cuadrado perfecto */
-    object-fit: cover; /* Recorta la imagen para que cubra todo el espacio sin distorsionarse */
-    border-radius: 50%; /* Hace que la imagen sea circular */
-    background-color: #ffffff; /* Fondo verde matcha para el círculo */
-    border: 2px solid var(--matcha-manga-green); /* Borde verde matcha alrededor del logo */
-    padding: 0; /* Quitamos el padding si lo tenía para que el fondo sea el círculo completo */
-    transition: transform 0.3s ease-in-out; /* Animación para el logo */
+    max-width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%; /* Circular */
+    background-color: var(--color-white); /* Fondo blanco para el círculo */
+    border: 2px solid var(--matcha-manga-green); /* Borde verde */
+    padding: 0;
+    transition: transform 0.3s ease-in-out;
 }
 
 .navbar-brand img:hover {
-    transform: rotate(5deg) scale(1.1); /* Animación de hover para el logo */  
+    transform: rotate(5deg) scale(1.1);
 }
 
-.navbar-nav .nav-link {
-    color: #030303; /* Color de los enlaces de navegación - sin cambios */
-    transition: color 0.3s ease, transform 0.3s ease; /* Animación para enlaces */
+/* Estilo para TODOS los botones de la navbar (incluyendo el buscador y el dropdown toggle) */
+.nav-button-style {
+    color: var(--color-white) !important; /* Texto blanco */
+    border: 1px solid var(--matcha-manga-light-green); /* Borde verde claro */
+    background-color: transparent !important; /* Fondo transparente por defecto */
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    margin: 0 0.4rem; /* Espacio entre botones */
+    transition: all 0.3s ease;
+    display: inline-flex; /* Para centrar contenido si es necesario */
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    text-decoration: none; /* Asegura que no tenga subrayado */
 }
 
-.navbar-nav .nav-link:hover {
-    color: var(--matcha-manga-green) !important; /* Color de los enlaces al pasar el ratón */
-    transform: translateX(3px); /* Ligeramente a la derecha */
+.nav-button-style:hover,
+.nav-button-style:focus {
+    background-color: var(--matcha-manga-light-green) !important; /* Fondo verde claro al pasar el ratón */
+    color: var(--color-text-dark) !important; /* Texto oscuro para contraste */
+    border-color: var(--matcha-manga-light-green) !important;
+    transform: translateY(-2px) scale(1.02); /* Ligeramente más grande y arriba */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.navbar-text {
-    color: #000000; /* Color del texto "Bienvenido, [Usuario]" - sin cambios */
+/* Asegura que los iconos dentro de los botones también se alineen */
+.nav-button-style .fas {
+    margin-right: 0.5rem; /* Espacio entre icono y texto si lo hubiera */
+}
+/* No queremos margen a la derecha para solo el icono de usuario */
+.nav-button-style .fas:only-child {
+    margin-right: 0;
 }
 
-/* Estilos para el botón de búsqueda */
-.btn-outline-success {
-    color: var(--navbar-button-text); /* Texto blanco */
-    border-color: var(--navbar-button-bg); /* Borde blanco */
-    background-color: var(--navbar-button-bg); /* Fondo blanco */
-    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+
+/* Estilos para el campo de búsqueda y botón en la Navbar */
+.navbar #searchForm {
+    /* Por defecto, Bootstrap maneja el ancho en d-flex */
+    /* En mobile, se ajustará con la media query */
+    /* mx-auto en el HTML (para mobile) */
+    width: auto; /* Permite que se ajuste al contenido por defecto */
 }
 
-.btn-outline-success:hover {
-    background-color: var(--navbar-button-hover-bg); /* Fondo gris claro al pasar el ratón */
-    color: #212529; /* Texto oscuro para contraste */
-    border-color: var(--navbar-button-hover-bg);
-    transform: scale(1.05); /* Un poco más grande */
+.navbar #searchForm .form-control {
+    border-color: var(--matcha-manga-light-green); /* Borde verde claro para el input */
 }
 
-/* Estilos para los botones de autenticación (Iniciar Sesión, Registrarse, Cerrar Sesión) y los de Catálogo, Cómics, Mangas */
-.btn-nav-auth { /* Nueva clase personalizada */
-    background-color: var(--navbar-button-bg); /* Fondo blanco */
-    color: var(--navbar-button-text); /* Texto blanco */
-    border-color: var(--navbar-button-bg); /* Borde blanco */
-    transition: all 0.3s ease; /* Para la animación de hover */
+.navbar #searchForm .form-control:focus {
+    border-color: var(--matcha-manga-green); /* Verde más oscuro al enfocar */
+    box-shadow: 0 0 0 0.25rem rgba(116, 161, 46, 0.25); /* Sombra de enfoque con el color matcha */
 }
 
-.btn-nav-auth:hover {
-    background-color: var(--navbar-button-hover-bg); /* Fondo gris claro al pasar el ratón */
-    border-color: var(--navbar-button-hover-bg);
-    color: #212529; /* Texto oscuro para contraste */
-    transform: translateY(-1px); /* Pequeña elevación */
+/* Estilo para los elementos del dropdown de usuario */
+.navbar .dropdown-menu {
+    background-color: var(--color-white); /* Fondo blanco para el menú desplegable */
+    border: 1px solid var(--color-gray-light);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 0;
 }
+
+.navbar .dropdown-item {
+    color: var(--color-text-dark); /* Texto oscuro para los items del dropdown */
+    padding: 0.75rem 1.5rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    background-color: var(--matcha-manga-light-green); /* Fondo verde claro al pasar el ratón */
+    color: var(--color-text-dark);
+}
+
+.navbar .dropdown-item-text {
+    color: var(--color-text-dark);
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+}
+
+.navbar .dropdown-divider {
+    border-color: var(--color-gray-light);
+    margin: 0.5rem 0;
+}
+
+
+/* --- Media Queries para la Navbar (Responsividad) --- */
+@media (max-width: 991.98px) { /* Para pantallas pequeñas (abajo de lg) */
+    .navbar .container-fluid {
+        justify-content: space-between; /* El toggler se va a la izquierda, el logo al centro, el grupo derecho al centro */
+    }
+
+    .navbar-toggler {
+        order: 0; /* Primer elemento */
+        margin-right: 1rem; /* Espacio a la derecha */
+    }
+
+    .navbar-brand {
+        margin-left: auto !important; /* Centra el logo */
+        margin-right: auto !important; /* Centra el logo */
+        order: 1; /* Segundo elemento */
+    }
+
+    /* Contenedor de la derecha (buscador, carrito, usuario) */
+    .navbar .d-flex.align-items-center.order-2 {
+        width: 100%; /* Ocupa todo el ancho */
+        margin-top: 0.5rem; /* Espacio debajo del logo */
+        justify-content: center !important; /* Centra el contenido en su propia fila */
+        flex-wrap: wrap; /* Permite que el buscador se envuelva si es muy largo */
+    }
+
+    /* Ajuste para el buscador en móvil */
+    #searchForm {
+        width: 90%; /* Ocupa la mayor parte del ancho */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 0.5rem; /* Espacio con los iconos de abajo */
+    }
+
+    /* Ajuste para los iconos de carrito y usuario en móvil */
+    .navbar .nav-link.nav-button-style.me-2 {
+        margin-bottom: 0.5rem; /* Espacio entre ellos si se apilan */
+        margin-right: 0.5rem !important; /* Mantiene un pequeño espacio entre ellos */
+        margin-left: 0.5rem !important;
+    }
+    
+    /* Centra el input del buscador en móviles si la forma está centrada */
+    #searchForm .form-control {
+        flex-grow: 1;
+    }
+
+    /* Estilos del menú colapsado */
+    .navbar-collapse {
+        background-color: var(--matcha-manga-red); /* Fondo del menú desplegable */
+        padding-bottom: 1rem; /* Espaciado extra en la parte inferior del menú */
+        border-radius: 0 0 0.5rem 0.5rem; /* Bordes redondeados en la parte inferior */
+        width: 100%; /* Ocupa todo el ancho */
+        order: 3; /* Se va al final, debajo del grupo derecho */
+        margin-top: 1rem; /* Espacio entre el grupo derecho y el menú colapsado */
+    }
+
+    .navbar .nav-item {
+        margin-bottom: 0.5rem; /* Espacio entre items de la navbar cuando están apilados */
+    }
+
+    .navbar .nav-link.nav-button-style,
+    .navbar .dropdown-item { /* Aplica a todos los elementos del menú colapsado */
+        display: block; /* Asegura que ocupen todo el ancho disponible */
+        width: fit-content; /* El ancho se ajusta al contenido del texto */
+        margin: 0.25rem auto; /* Centra los botones individualmente en el colapsado */
+        padding: 0.75rem 1.5rem; /* Aumenta el padding para que sean más fáciles de tocar */
+        background-color: var(--color-white); /* Fondo blanco para los botones en el menú desplegado */
+        color: var(--color-text-light) !important; /* Texto oscuro */
+        border: 1px solid var(--matcha-manga-light-green);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar .nav-link.nav-button-style:hover,
+    .navbar .nav-link.nav-button-style:focus,
+    .navbar .dropdown-item:hover,
+    .navbar .dropdown-item:focus {
+        background-color: var(--matcha-manga-light-green) !important; /* Verde más oscuro al hover */
+        color: var(--color-text-dark) !important; /* Texto oscuro al hover */
+        transform: translateY(-1px);
+    }
+}
+
+@media (min-width: 992px) { /* Para pantallas grandes (lg y arriba) */
+    .navbar .container-fluid {
+        flex-wrap: nowrap; /* Evita que los elementos se envuelvan */
+        justify-content: space-between; /* Espacio entre los grupos principales */
+    }
+
+    .navbar-toggler {
+        display: none; /* Oculta el toggler en desktop */
+    }
+
+    .navbar-brand {
+        margin-right: 0 !important; /* Elimina margen automático del logo en desktop para alineación precisa */
+        order: 0; /* Asegura que el logo sea el primer elemento visible */
+    }
+
+    /* Contenedor de la derecha (buscador, carrito, usuario) */
+    .navbar .d-flex.align-items-center.order-2 {
+        order: 2; /* Coloca este grupo al final (derecha) */
+        margin-left: auto !important; /* Empuja el grupo a la derecha */
+        margin-right: 0 !important; /* Resetea el margen si viene de móvil */
+        width: auto; /* Ancho automático para que ocupe solo lo necesario */
+    }
+
+    /* El navbar-collapse contiene los enlaces centrales */
+    .navbar-collapse {
+        display: flex !important; /* Muestra el contenido del collapse en desktop */
+        flex-grow: 0; /* NO queremos que ocupe espacio extra, solo el necesario */
+        justify-content: flex-start; /* Alinea los elementos al inicio (a la izquierda) */
+        order: 1; /* Coloca el collapse entre el logo y el grupo derecho */
+        margin-left: 1rem; /* Añade un pequeño margen a la izquierda del primer enlace para separar del logo */
+        margin-right: auto; /* Empuja el grupo de la derecha (search, cart, user) a la derecha */
+    }
+
+    /* Para que los botones se separen un poco más en desktop */
+    .navbar .nav-item {
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+    }
+}
+
 
 /* --- Cards de Productos --- */
 .card {
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Animación de escala para las tarjetas de productos */
-    border-radius: 0.5rem; /* Bordes redondeados */
-    overflow: hidden; /* Asegura que la imagen no se desborde si tiene border-radius */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border-radius: 0.75rem; /* Bordes más redondeados */
+    overflow: hidden;
+    background-color: var(--color-white); /* Fondo blanco para las cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .card:hover {
-    transform: translateY(-5px) scale(1.02); /* Ligeramente hacia arriba y un poco más grande */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    transform: translateY(-8px) scale(1.03); /* Ligeramente hacia arriba y un poco más grande */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
 }
 
 .card-img-top {
     width: 100%;
-    height: 200px; /* Altura fija para todas las imágenes de la tarjeta */
-    object-fit: contain; /* Mantiene la relación de aspecto y ajusta la imagen dentro del contenedor */
-    background-color: #ffffff; /* Fondo blanco si la imagen no llena el contenedor */
-    padding: 10px; /* Pequeño padding alrededor de la imagen dentro de la tarjeta */
+    height: 220px; /* Aumenta ligeramente la altura para mejor visualización */
+    object-fit: contain;
+    background-color: var(--color-background-light); /* Fondo claro para el área de la imagen */
+    padding: 15px; /* Más padding para la imagen */
+    border-bottom: 1px solid var(--color-gray-light); /* Borde inferior sutil */
 }
 
 .card-body {
-    padding: 1rem;
+    padding: 1.25rem; /* Más padding en el cuerpo de la tarjeta */
+    display: flex;
+    flex-direction: column;
 }
 
 .card-title {
-    font-size: 1.1rem; /* Ajuste del tamaño del título */
+    font-size: 1.15rem;
     font-weight: bold;
-    min-height: 2.8em; /* Asegura que los títulos ocupen al menos dos líneas para consistencia */
+    min-height: 3em; /* Asegura espacio para 2-3 líneas de título */
     line-height: 1.4em;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* Limita el título a 2 líneas */
-    line-clamp: 2; /* Propiedad estándar para compatibilidad */
+    line-clamp: 2;
     -webkit-box-orient: vertical;
+    color: var(--color-text-dark); /* Color de texto oscuro para títulos */
+    margin-bottom: 0.5rem;
 }
 
-.card-text.small {
-    font-size: 0.85rem; /* Hace el texto más pequeño para las descripciones y autores */
-    min-height: 1.5em; /* Ajuste para el autor */
-}
-
-.card-text.small[style*="max-height: 3em"] { /* Estilo específico para la descripción, si aún la tienes */
-    min-height: 3em; /* Asegura un espacio para la descripción */
-    line-height: 1.5em;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* Limita la descripción a 2 líneas */
-    line-clamp: 2; /* Propiedad estándar para compatibilidad */
-    -webkit-box-orient: vertical;
+.card-text.text-muted.small { /* Para el autor */
+    font-size: 0.9rem;
+    min-height: 1.5em;
+    color: var(--color-text-dark) !important; /* Asegura el color oscuro del texto */
+    opacity: 0.8; /* Ligeramente transparente */
+    margin-bottom: 0.5rem;
 }
 
 .card-text.fw-bold.small { /* Para el precio */
-    font-size: 1rem;
+    font-size: 1.2rem; /* Precio más grande */
+    color: var(--matcha-manga-green); /* Color verde matcha para el precio */
+    margin-top: auto; /* Empuja el precio y el botón hacia abajo */
+    margin-bottom: 1rem;
 }
 
-/* Ajustes adicionales para el botón "Añadir" en las cards si quieres que siga el tema del verde matcha */
-.btn-primary { /* Para el botón "Añadir" de las cards */
+/* Botón "Añadir" en las Cards */
+.btn-primary {
     background-color: var(--matcha-manga-green);
     border-color: var(--matcha-manga-green);
-    color: var(--navbar-button-text); /* Texto blanco para contraste */
+    color: var(--color-white); /* Texto blanco */
+    font-weight: 600;
+    border-radius: 0.5rem; /* Bordes más redondeados */
+    padding: 0.6rem 1rem;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
     background-color: var(--matcha-manga-dark-green);
     border-color: var(--matcha-manga-dark-green);
-    color: var(--navbar-button-text);
-    transform: translateY(-2px); /* Ligeramente hacia arriba */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.btn-sm {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
-    border-radius: 0.2rem;
-}
-
-/* --- Botones Genéricos (si no son de navbar o card) --- */
+/* Botones de Bootstrap en general (para asegurar consistencia si los usas en otros lugares) */
 .btn {
-    border-radius: 0.3rem;
+    border-radius: 0.3rem; /* Bordes por defecto de Bootstrap */
     font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-/* Opcional: Ajustes para otros botones Bootstrap si quieres que sigan el tema */
+/* Estilos para botones de Admin (Editar, Eliminar) */
 .btn-warning {
-    background-color: var(--matcha-manga-yellow);
-    border-color: var(--matcha-manga-yellow);
-    color: #212529;
-    transition: all 0.3s ease;
+    background-color: var(--matcha-manga-salmon); /* Usando el nuevo color salmón */
+    border-color: var(--matcha-manga-salmon);
+    color: var(--color-text-dark); /* Texto oscuro para contraste */
 }
 
 .btn-warning:hover {
-    background-color: var(--matcha-manga-dark-yellow);
-    border-color: var(--matcha-manga-dark-yellow);
-    color: #212529;
+    background-color: var(--matcha-manga-dark-red); /* Un rojo más oscuro al hover */
+    border-color: var(--matcha-manga-dark-red);
+    color: var(--color-white);
+}
+
+.btn-danger {
+    background-color: var(--matcha-manga-red); /* El rojo oscuro que tenías */
+    border-color: var(--matcha-manga-red);
+    color: var(--color-white);
+}
+
+.btn-danger:hover {
+    background-color: var(--matcha-manga-dark-red);
+    border-color: var(--matcha-manga-dark-red);
 }
 
 .btn-success {
-    background-color: #28a745; /* Mantener el verde de Bootstrap o personalizar */
-    border-color: #28a745;
-    transition: all 0.3s ease;
+    background-color: var(--matcha-manga-green);
+    border-color: var(--matcha-manga-green);
+    color: var(--color-white);
 }
 
 .btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
+    background-color: var(--matcha-manga-dark-green);
+    border-color: var(--matcha-manga-dark-green);
 }
+
 
 /* --- Footer --- */
 footer {
-    background-color: #212529; /* Mismo color que el navbar */
-    color: #f8f9fa;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+    background-color: var(--color-background-dark); /* Fondo oscuro del footer */
+    color: var(--color-text-light);
+    padding-top: 1.5rem;   /* Reducido para usar menos espacio */
+    padding-bottom: 1.5rem; /* Reducido para usar menos espacio */
+    border-top: 3px solid var(--matcha-manga-green); /* Borde verde para separar del contenido */
 }
 
 footer a {
-    color: #f8f9fa;
+    color: var(--color-text-light);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: var(--matcha-manga-yellow); /* Color al pasar el ratón en el footer */
+    color: var(--matcha-manga-light-green); /* Color verde claro al pasar el ratón en el footer */
 }
 
-footer .text-warning {
-    color: var(--matcha-manga-yellow) !important; /* Asegura el color amarillo para los títulos */
+footer .text-warning { /* Los títulos del footer */
+    color: var(--matcha-manga-light-green) !important; /* Asegura el color verde claro */
 }
 
 footer .list-inline-item .fab {
@@ -208,12 +426,39 @@ footer .list-inline-item .fab {
 }
 
 footer .list-inline-item .fab:hover {
-    transform: scale(1.2);
-    color: var(--matcha-manga-yellow);
+    transform: scale(1.3); /* Iconos sociales un poco más grandes al hover */
+    color: var(--matcha-manga-light-green);
 }
 
-/* --- Formularios y Modales --- */
+.mb-0{
+    text-align: end;
+}
+
+.mb-1{
+    text-align: center;
+}
+/* El resto de tu CSS permanece igual */
+
+/* --- Formularios y Modales (Ajustes de Bootstrap) --- */
 .form-control:focus {
-    border-color: var(--matcha-manga-yellow);
-    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25); /* Sombra de enfoque con el color personalizado */
+    border-color: var(--matcha-manga-green);
+    box-shadow: 0 0 0 0.25rem rgba(116, 161, 46, 0.25); /* Sombra de enfoque con el color verde matcha */
+}
+
+/* Estilos para los títulos de sección (h2) */
+h2 {
+    color: var(--matcha-manga-red); /* Color de acento para los títulos de sección */
+    font-weight: 700;
+    margin-bottom: 2rem;
+    position: relative; /* Para el underline */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60px; /* Ancho de la línea */
+    height: 4px;
+    background-color: var(--matcha-manga-green); /* Color verde para la línea */
+    margin: 0.5rem auto 0 auto; /* Centrar la línea debajo del título */
+    border-radius: 2px;
 }

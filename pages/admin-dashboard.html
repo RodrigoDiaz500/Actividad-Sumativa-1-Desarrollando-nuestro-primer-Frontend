@@ -12,56 +12,57 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
-    <div class="container-fluid">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <nav class="navbar navbar-expand-lg "> 
+        <div class="container-fluid">
+            <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        </ul>
-
-    <ul class="navbar-nav d-flex justify-content-center align-items-center flex-grow-1 mb-2 mb-lg-0">
-        <li class="nav-item d-flex align-items-center mx-1"> <a class="navbar-brand p-0 me-2" href="/index.html"> <img src="/img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px; height: auto;">
+            <a class="navbar-brand p-0 mx-auto order-1 order-lg-0" href="index.html"> 
+                <img src="img/logo.png" alt="logo" class="img-fluid" style="max-width: 80px; height: auto;">
             </a>
-            <a class="btn btn-nav-auth btn-sm" aria-current="page" href="/index.html">Catálogo Completo</a>
-        </li>
-        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/comics.html">Cómics</a>
-        </li>
-        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/mangas.html">Mangas</a>
-        </li>
-        <li class="nav-item mx-1"> <form class="d-flex" role="search" id="searchForm">
-                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
-                    id="searchInput">
-                <button class="btn btn-outline-success" type="submit">Buscar</button>
-            </form>
-        </li>
-    </ul>
+            
+            <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
+                <ul class="navbar-nav mb-2 mb-lg-0"> <li class="nav-item">
+                        <a class="nav-link nav-button-style" aria-current="page" href="index.html">Catálogo Completo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-button-style" href="pages/comics.html">Cómics</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-button-style" href="pages/mangas.html">Mangas</a>
+                    </li>
+                </ul>
+            </div>
 
-    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item d-none mx-1" id="navProfileLink"> <a class="btn btn-nav-auth btn-sm" href="/pages/profile.html">Mi Perfil</a>
-        </li>
-        <li class="nav-item d-none mx-1" id="navAdminLink"> <a class="btn btn-nav-auth btn-sm" href="/pages/admin-dashboard.html">Administración</a>
-        </li>
-    </ul>
+            <div class="d-flex align-items-center order-2 order-lg-last flex-grow-1 flex-lg-grow-0 justify-content-center justify-content-lg-end mt-2 mt-lg-0">
+                <form class="d-flex me-2" role="search" id="searchForm">
+                    <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInput">
+                    <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</button>
+                </form>
 
-    <ul class="navbar-nav" id="authNavLinks">
-        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/login.html">Iniciar Sesión</a>
-        </li>
-        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="/pages/register.html">Registrarse</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav" id="loggedInNavLinks">
-        <li class="nav-item mx-1"> <span class="navbar-text me-2">Bienvenido, <span id="loggedInUserName"></span></span>
-        </li>
-        <li class="nav-item mx-1"> <a class="btn btn-nav-auth btn-sm" href="#" id="logoutLink">Cerrar Sesión</a>
-        </li>
-    </ul>
-</div>
-    </div>
-</nav>
+                <a class="nav-link nav-button-style me-2" href="#" id="cartLink">🛒 Carrito (<span id="cartCount">0</span>)</a>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li id="loginMenuItem"><a class="dropdown-item" href="pages/login.html">Ingresar</a></li>
+                            <li id="registerMenuItem"><a class="dropdown-item" href="pages/register.html">Registrarse</a></li>
+                            
+                            <li id="loggedInUserNameDropdownContainer" class="d-none"><span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdown"></strong></span></li>
+                            <li id="profileMenuItem" class="d-none"><a class="dropdown-item" href="pages/profile.html">Mi Perfil</a></li>
+                            <li id="adminMenuItem" class="d-none"><a class="dropdown-item" href="pages/admin-dashboard.html">Administración</a></li>
+                            <li class="d-none" id="userMenuDivider"><hr class="dropdown-divider"></li>
+                            <li id="logoutMenuItem" class="d-none"><a class="dropdown-item" href="#" id="logoutLinkDropdown">Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <main class="container mt-4">
         <h1 class="mb-4">Panel de Administración</h1>
@@ -182,17 +183,16 @@
 
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Productos</h5>
-                    <p><a href="/index.html" class="text-white" style="text-decoration: none;">Catálogo Completo</a></p>
-                    <p><a href="/pages/comics.html" class="text-white" style="text-decoration: none;">Cómics</a></p>
-                    <p><a href="/pages/mangas.html" class="text-white" style="text-decoration: none;">Mangas</a></p>
+                    <p><a href="index.html" class="text-white" style="text-decoration: none;">Catálogo Completo</a></p>
+                    <p><a href="pages/comics.html" class="text-white" style="text-decoration: none;">Cómics</a></p>
+                    <p><a href="pages/mangas.html" class="text-white" style="text-decoration: none;">Mangas</a></p>
                 </div>
 
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Enlaces Útiles</h5>
-                    <p><a href="/pages/profile.html" class="text-white" style="text-decoration: none;">Mi Perfil</a></p>
-                    <p><a href="/pages/login.html" class="text-white" style="text-decoration: none;">Iniciar Sesión</a></p>
-                    <p><a href="/pages/register.html" class="text-white" style="text-decoration: none;">Registrarse</a></p>
-                    <p><a href="#" class="text-white" style="text-decoration: none;">Ayuda</a></p>
+                    <p><a href="pages/profile.html" class="text-white" style="text-decoration: none;">Mi Perfil</a></p>
+                    <p><a href="pages/login.html" class="text-white" style="text-decoration: none;">Iniciar Sesión</a></p>
+                    <p><a href="pages/register.html" class="text-white" style="text-decoration: none;">Registrarse</a></p>
                 </div>
 
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -203,7 +203,6 @@
                 </div>
             </div>
 
-            <hr class="mb-4">
 
             <div class="row align-items-center">
                 <div class="col-md-7 col-lg-8">
@@ -212,24 +211,6 @@
                             <strong class="text-warning">Matcha Manga</strong>
                         </a>
                     </p>
-                </div>
-                <div class="col-md-5 col-lg-4">
-                    <div class="text-center text-md-end">
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-linkedin-in"></i></a>
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
