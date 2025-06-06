@@ -15,18 +15,13 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg d-none d-lg-flex">
         <div class="container-fluid">
-            <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <a class="navbar-brand p-0 mx-auto order-1 order-lg-0" href="index.html">
+            <a class="navbar-brand p-0 order-lg-0" href="index.html">
                 <img src="img/logo.png" alt="logo" class="img-fluid">
             </a>
 
-            <div class="collapse navbar-collapse order-lg-1" id="navbarNav">
+            <div class="collapse navbar-collapse order-lg-1" id="navbarNavDesktop">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link nav-button-style" aria-current="page" href="index.html">Catálogo Completo</a>
@@ -39,36 +34,37 @@
                     </li>
                 </ul>
 
-                <div class="d-flex flex-column flex-lg-row align-items-center w-100 w-lg-auto mt-2 mt-lg-0">
-                    <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchForm">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInput">
-                        <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</button>
+                <div class="d-flex flex-row align-items-center w-auto">
+                    <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchFormDesktop">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInputDesktop">
+                        <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</i></button>
                     </form>
 
-                    <a class="nav-link nav-button-style mb-2 mb-lg-0" href="#" id="cartLink">
-                        <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCount">0</span>)
+                    <a class="nav-link nav-button-style me-2" href="#" id="cartLinkDesktop" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCountDesktop">0</span>)
                     </a>
 
-                    <div class="nav-item dropdown w-90 w-lg-auto"> <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-user"></i> <span id="loggedInUserName">Admin Ejemplo</span> 
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
-                            <li id="loginMenuItem"><a class="dropdown-item" href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Ingresar</a></li>
-                            <li id="registerMenuItem"><a class="dropdown-item" href="pages/register.html"><i class="fas fa-user-plus"></i> Registrarse</a></li>
-                            
-                            <li id="loggedInUserNameDropdownContainer" class="d-none">
-                                <span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdown"></strong></span>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdownDesktop" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i> <span id="loggedInUserNameDesktop"></span>
+                            </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownDesktop">
+                            <li id="loginMenuItemDesktop"><a class="dropdown-item" href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Ingresar</a></li>
+                            <li id="registerMenuItemDesktop"><a class="dropdown-item" href="pages/register.html"><i class="fas fa-user-plus"></i> Registrarse</a></li>
+
+                            <li id="loggedInUserNameDropdownContainerDesktop" class="d-none">
+                                <span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdownDesktopText"></strong></span>
                             </li>
-                            <li id="profileMenuItem" class="d-none">
-                                <a class="dropdown-item" href="pages/profile.html" id="navProfileLink"><i class="fas fa-user"></i> Mi Perfil</a>
+                            <li id="profileMenuItemDesktop" class="d-none">
+                                <a class="dropdown-item" href="pages/profile.html" id="navProfileLinkDesktop"><i class="fas fa-user"></i> Mi Perfil</a>
                             </li>
-                            <li id="adminMenuItem" class="d-none">
-                                <a class="dropdown-item" href="pages/admin-dashboard.html" id="navAdminLink"><i class="fas fa-cog"></i> Administrar</a>
+                            <li id="adminMenuItemDesktop" class="d-none">
+                                <a class="dropdown-item" href="pages/admin-dashboard.html" id="navAdminLinkDesktop"><i class="fas fa-cog"></i> Administrar</a>
                             </li>
-                            <li class="dropdown-divider d-none" id="userMenuDivider"></li>
-                            <li id="logoutMenuItem" class="d-none">
-                                <a class="dropdown-item" href="#" id="logoutLink"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                            <li class="dropdown-divider d-none" id="userMenuDividerDesktop"></li>
+                            <li id="logoutMenuItemDesktop" class="d-none">
+                                <a class="dropdown-item" href="#" id="logoutLinkDesktop"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -76,6 +72,76 @@
             </div>
         </div>
     </nav>
+
+
+
+
+    <nav class="navbar navbar-expand-lg d-lg-none sticky-top">
+        <div class="container-fluid d-flex justify-content-between align-items-center">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchFormMobile">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInputMobile">
+                        <button class="btn btn-outline-warning nav-button-style" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+
+            <button class="btn btn-link nav-button-style p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUser" aria-controls="offcanvasUser">
+                <i class="fas fa-user"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú Principal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Catálogo Completo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/mangas.html">Mangas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/comics.html">Cómics</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasUser" aria-labelledby="offcanvasUserLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasUserLabel">Mi Cuenta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item" id="loginMenuItemOffcanvas"><a class="nav-link" href="pages/login.html"><i class="fas fa-sign-in-alt"></i> Ingresar</a></li>
+                <li class="nav-item" id="registerMenuItemOffcanvas"><a class="nav-link" href="pages/register.html"><i class="fas fa-user-plus"></i> Registrarse</a></li>
+                <li class="nav-item d-none" id="loggedInUserNameOffcanvasContainer">
+                    <span class="nav-link">Bienvenido, <strong id="loggedInUserNameOffcanvas"></strong></span>
+                </li>
+                <li class="nav-item d-none" id="profileMenuItemOffcanvas">
+                    <a class="nav-link" href="pages/profile.html" id="navProfileLinkOffcanvas"><i class="fas fa-user"></i> Mi Perfil</a>
+                </li>
+                <li class="nav-item d-none" id="adminMenuItemOffcanvas">
+                    <a class="nav-link" href="pages/admin-dashboard.html" id="navAdminLinkOffcanvas"><i class="fas fa-cog"></i> Administrar</a>
+                </li>
+                <li class="nav-item d-none" id="logoutMenuItemOffcanvas">
+                    <a class="nav-link" href="#" id="logoutLinkOffcanvas"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+                </li>
+            </ul>
+            <hr>
+            <a class="nav-link nav-button-style w-100" href="#" id="cartLinkOffcanvas" data-bs-toggle="modal" data-bs-target="#cartModal">
+                <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCountOffcanvas">0</span>)
+            </a>
+        </div>
+    </div>
 
     <main class="container mt-4">
         <section class="my-5">
