@@ -407,43 +407,67 @@ document.addEventListener('DOMContentLoaded', function() {
         clearCartBtn.addEventListener('click', clearCart);
     }
 
-    if (simulatePurchaseBtn) {
-        simulatePurchaseBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            if (cart.length === 0) {
-                alert('El carrito está vacío. Añade productos para simular una compra.');
-                return;
-            }
+// ... (tu código anterior de script.js) ...
 
-            if (!getCurrentUserRole()) {
-                alert('Debes iniciar sesión para simular una compra.');
-                const cartModalElement = document.getElementById('cartModal');
-                const cartModal = bootstrap.Modal.getInstance(cartModalElement);
-                if (cartModal) cartModal.hide();
+if (simulatePurchaseBtn) {
+    simulatePurchaseBtn.addEventListener('click', function(event) {
+        event.preventDefault(); // Evita el comportamiento por defecto del enlace
 
-                const currentPagePath = window.location.pathname;
-                if (currentPagePath.includes('/pages/')) {
-                    window.location.href = 'login.html'; // De pages/x.html a pages/login.html
-                } else {
-                    window.location.href = 'pages/login.html'; // De index.html a pages/login.html
-                }
-                return;
-            }
+        // 1. Verificar si el carrito está vacío
+        if (cart.length === 0) {
+            alert('El carrito está vacío. Añade productos para simular una compra.');
+            return;
+        }
 
-            alert('¡Compra simulada con éxito! Tu pedido ha sido procesado.');
-            cart = [];
-            sessionStorage.removeItem('cart'); // Asegurarse de limpiar el carrito de sessionStorage
-            updateCartDisplay();
+        // 2. Verificar si el usuario ha iniciado sesión
+        if (!getCurrentUserRole()) {
+            alert('Debes iniciar sesión para simular una compra.');
             const cartModalElement = document.getElementById('cartModal');
             const cartModal = bootstrap.Modal.getInstance(cartModalElement);
-            if (cartModal) {
-                cartModal.hide();
+            if (cartModal) cartModal.hide();
+
+            const currentPagePath = window.location.pathname;
+            if (currentPagePath.includes('/pages/')) {
+                window.location.href = 'login.html'; // De pages/x.html a pages/login.html
+            } else {
+                window.location.href = 'pages/login.html'; // De index.html a pages/login.html
             }
-            // Opcional: Redirigir a una página de confirmación o al index
-            // window.location.href = 'pages/simulated-payment.html'; // Si tuvieras una página de pago simulado
-            // window.location.href = '../index.html'; // O volver al index si ya estabas en una subpágina
-        });
-    }
+            return;
+        }
+
+        // 3. Compra exitosa:
+        // Puedes mantener este alert si quieres, o quitarlo si prefieres ir directo a la página de éxito
+        alert('¡Compra simulada con éxito! Tu pedido ha sido procesado.'); 
+        
+        // Limpiar el carrito y el almacenamiento de sesión
+        cart = [];
+        sessionStorage.removeItem('cart'); // Asegurarse de limpiar el carrito de sessionStorage
+        
+        // Actualizar la visualización del carrito
+        updateCartDisplay();
+        
+        // Ocultar el modal del carrito
+        const cartModalElement = document.getElementById('cartModal');
+        const cartModal = bootstrap.Modal.getInstance(cartModalElement);
+        if (cartModal) {
+            cartModal.hide();
+        }
+
+        // --- ÚNICO CAMBIO: Redirigir a la página de pago exitoso (usando el nombre 'simulated-payment.html') ---
+        const currentPagePath = window.location.pathname;
+        if (currentPagePath.includes('/pages/')) {
+            // Si la página actual ya está en una subcarpeta (ej. 'pages/mangas.html'),
+            // la redirección a 'simulated-payment.html' es relativa a esa misma carpeta.
+            window.location.href = 'simulated-payment.html'; 
+        } else {
+            // Si la página actual es la raíz (ej. 'index.html'),
+            // la redirección debe ir a la subcarpeta 'pages/'.
+            window.location.href = 'pages/simulated-payment.html';
+        }
+    });
+}
+
+// ... (resto de tu script.js) ...
 
     // --- Manejo de Eventos de Logout (para ambos enlaces de logout) ---
     function setupLogoutListeners() {
