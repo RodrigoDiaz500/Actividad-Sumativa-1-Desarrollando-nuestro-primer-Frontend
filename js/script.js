@@ -744,12 +744,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 <tr>
                     <td>${product.id}</td>
                     <td>${product.title}</td>
-                    <td>${product.author}</td>
-                    <td>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</td>
+                    <td class="d-none d-md-table-cell">${product.author}</td> <td>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</td>
                     <td>$${product.price.toFixed(3)}</td>
                     <td>
-                        <button class="btn btn-sm btn-warning edit-product me-2" data-id="${product.id}">Editar</button>
-                        <button class="btn btn-sm btn-danger delete-product" data-id="${product.id}">Eliminar</button>
+                        <div class="d-flex flex-column flex-sm-row gap-2"> <button class="btn btn-sm btn-warning edit-product flex-grow-1" data-id="${product.id}">Editar</button>
+                            <button class="btn btn-sm btn-danger delete-product flex-grow-1" data-id="${product.id}">Eliminar</button>
+                        </div>
                     </td>
                 </tr>
             `;

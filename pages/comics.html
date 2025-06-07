@@ -2,27 +2,29 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matcha Manga - Cómics</title>
-    <link rel="icon" type="image/vnd.icon" href="../img/favicon.png">
+    <link rel="icon" type="image/vnd.icon" href="../img/favicon.png" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 </head>
 
 <body>
+    <!-- Navbar Escritorio -->
     <nav class="navbar navbar-expand-lg d-none d-lg-flex">
         <div class="container-fluid">
             <a class="navbar-brand p-0 order-lg-0" href="/index.html">
-                <img src="/img/logo.png" alt="logo" class="img-fluid">
+                <img src="/img/logo.png" alt="logo" class="img-fluid" />
             </a>
 
             <div class="collapse navbar-collapse order-lg-1" id="navbarNavDesktop">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link nav-button-style" aria-current="page" href="/index.html">Catálogo Completo</a>
+                        <a class="nav-link nav-button-style" aria-current="page" href="/index.html">Catálogo
+                            Completo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-button-style" href="/pages/mangas.html">Mangas</a>
@@ -33,37 +35,40 @@
                 </ul>
 
                 <div class="d-flex flex-row align-items-center w-auto">
-                    <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchFormDesktop">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInputDesktop">
-                        <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</i></button>
+                    <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search"
+                        id="searchFormDesktop">
+                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                            id="searchInputDesktop" />
+                        <button class="btn btn-outline-warning nav-button-style" type="submit">Buscar</button>
                     </form>
 
-                    <a class="nav-link nav-button-style me-2" href="#" id="cartLinkDesktop" data-bs-toggle="modal" data-bs-target="#cartModal">
+                    <a class="nav-link nav-button-style me-2" href="#" id="cartLinkDesktop" data-bs-toggle="modal"
+                        data-bs-target="#cartModal">
                         <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCountDesktop">0</span>)
                     </a>
 
                     <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdownDesktop" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-user"></i> <span id="loggedInUserNameDesktop"></span>
-                            </a>
+                        <a class="nav-link dropdown-toggle nav-button-style" href="#" id="userDropdownDesktop"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> <span id="loggedInUserNameDesktop"></span>
+                        </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdownDesktop">
-                            <li id="loginMenuItemDesktop"><a class="dropdown-item" href="/pages/login.html"><i class="fas fa-sign-in-alt"></i> Ingresar</a></li>
-                            <li id="registerMenuItemDesktop"><a class="dropdown-item" href="/pages/register.html"><i class="fas fa-user-plus"></i> Registrarse</a></li>
-
-                            <li id="loggedInUserNameDropdownContainerDesktop" class="d-none">
-                                <span class="dropdown-item-text">Bienvenido, <strong id="loggedInUserNameDropdownDesktopText"></strong></span>
-                            </li>
-                            <li id="profileMenuItemDesktop" class="d-none">
-                                <a class="dropdown-item" href="/pages/profile.html" id="navProfileLinkDesktop"><i class="fas fa-user"></i> Mi Perfil</a>
-                            </li>
-                            <li id="adminMenuItemDesktop" class="d-none">
-                                <a class="dropdown-item" href="/pages/admin-dashboard.html" id="navAdminLinkDesktop"><i class="fas fa-cog"></i> Administrar</a>
-                            </li>
+                            <li id="loginMenuItemDesktop"><a class="dropdown-item" href="/pages/login.html"><i
+                                        class="fas fa-sign-in-alt"></i> Ingresar</a></li>
+                            <li id="registerMenuItemDesktop"><a class="dropdown-item" href="/pages/register.html"><i
+                                        class="fas fa-user-plus"></i> Registrarse</a></li>
+                            <li id="loggedInUserNameDropdownContainerDesktop" class="d-none"><span
+                                    class="dropdown-item-text">Bienvenido, <strong
+                                        id="loggedInUserNameDropdownDesktopText"></strong></span></li>
+                            <li id="profileMenuItemDesktop" class="d-none"><a class="dropdown-item"
+                                    href="/pages/profile.html" id="navProfileLinkDesktop"><i class="fas fa-user"></i> Mi
+                                    Perfil</a></li>
+                            <li id="adminMenuItemDesktop" class="d-none"><a class="dropdown-item"
+                                    href="/pages/admin-dashboard.html" id="navAdminLinkDesktop"><i
+                                        class="fas fa-cog"></i> Administrar</a></li>
                             <li class="dropdown-divider d-none" id="userMenuDividerDesktop"></li>
-                            <li id="logoutMenuItemDesktop" class="d-none">
-                                <a class="dropdown-item" href="#" id="logoutLinkDesktop"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
-                            </li>
+                            <li id="logoutMenuItemDesktop" class="d-none"><a class="dropdown-item" href="#"
+                                    id="logoutLinkDesktop"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -71,9 +76,7 @@
         </div>
     </nav>
 
-
-
-
+    <!-- Navbar Móvil -->
     <nav class="navbar navbar-expand-lg d-lg-none sticky-top">
         <div class="container-fluid d-flex justify-content-between align-items-center">
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -82,27 +85,81 @@
             </button>
 
             <form class="d-flex mx-auto mx-lg-0 mb-2 mb-lg-0 w-90 w-lg-auto" role="search" id="searchFormMobile">
-                        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search" id="searchInputMobile">
-                        <button class="btn btn-outline-warning nav-button-style" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+                <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search"
+                    id="searchInputMobile" />
+                <button class="btn btn-outline-warning nav-button-style" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
 
-            <button class="btn btn-link nav-button-style p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasUser" aria-controls="offcanvasUser">
+            <button class="btn btn-link nav-button-style p-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasUser" aria-controls="offcanvasUser">
                 <i class="fas fa-user"></i>
             </button>
         </div>
     </nav>
-    
 
+    <!-- Offcanvas Navbar (menú principal móvil) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menú Principal</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index.html">Catálogo Completo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/mangas.html">Mangas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pages/comics.html">Cómics</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
+    <!-- Offcanvas User (menú de usuario móvil) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasUser" aria-labelledby="offcanvasUserLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasUserLabel">Mi Cuenta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item" id="loginMenuItemOffcanvas"><a class="nav-link" href="/pages/login.html"><i
+                            class="fas fa-sign-in-alt"></i> Ingresar</a></li>
+                <li class="nav-item" id="registerMenuItemOffcanvas"><a class="nav-link" href="/pages/register.html"><i
+                            class="fas fa-user-plus"></i> Registrarse</a></li>
+                <li class="nav-item d-none" id="loggedInUserNameOffcanvasContainer">
+                    <span class="nav-link">Bienvenido, <strong id="loggedInUserNameOffcanvas"></strong></span>
+                </li>
+                <li class="nav-item d-none" id="profileMenuItemOffcanvas"><a class="nav-link" href="/pages/profile.html"
+                        id="navProfileLinkOffcanvas"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                <li class="nav-item d-none" id="adminMenuItemOffcanvas"><a class="nav-link"
+                        href="/pages/admin-dashboard.html" id="navAdminLinkOffcanvas"><i class="fas fa-cog"></i>
+                        Administrar</a></li>
+                <li class="nav-item d-none" id="logoutMenuItemOffcanvas"><a class="nav-link" href="#"
+                        id="logoutLinkOffcanvas"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+            <hr />
+            <a class="nav-link nav-button-style w-100" href="#" id="cartLinkOffcanvas" data-bs-toggle="modal"
+                data-bs-target="#cartModal">
+                <i class="fas fa-shopping-cart"></i> Carrito (<span id="cartCountOffcanvas">0</span>)
+            </a>
+        </div>
+    </div>
 
+    <!-- Contenido principal -->
     <main class="container mt-4">
         <section class="my-5">
             <h2 class="text-center mb-4">Nuestros Cómics</h2>
-            <div id="comicsContainer" class="row">
-            </div>
+            <div id="comicsContainer" class="row"></div>
         </section>
     </main>
 
+    <!-- Modal de carrito -->
     <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -123,24 +180,21 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4">
         <div class="container text-center text-md-start">
             <div class="row text-center text-md-start">
-
                 <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Matcha Manga</h5>
                     <p>Tu destino online para cómics y mangas. ¡Explora mundos increíbles y encuentra tu próxima lectura
                         favorita!</p>
                 </div>
-
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Productos</h5>
                     <p><a href="/index.html" class="text-white" style="text-decoration: none;">Catálogo Completo</a></p>
                     <p><a href="/pages/mangas.html" class="text-white" style="text-decoration: none;">Mangas</a></p>
                     <p><a href="/pages/comics.html" class="text-white" style="text-decoration: none;">Cómics</a></p>
-
                 </div>
-
                 <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Enlaces Útiles</h5>
                     <p><a href="/pages/profile.html" class="text-white" style="text-decoration: none;">Mi Perfil</a></p>
@@ -149,7 +203,6 @@
                     <p><a href="/pages/register.html" class="text-white" style="text-decoration: none;">Registrarse</a>
                     </p>
                 </div>
-
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
                     <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Contacto</h5>
                     <p><i class="fas fa-home me-3"></i> Av. Siempre Viva 742, Springfield</p>
@@ -157,8 +210,6 @@
                     <p><i class="fas fa-phone me-3"></i> +56 9 1234 5678</p>
                 </div>
             </div>
-
-
             <div class="row align-items-center">
                 <div class="col-md-7 col-lg-8">
                     <p class="mb-0">&copy; 2025 Todos los derechos reservados</p>
@@ -167,6 +218,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
