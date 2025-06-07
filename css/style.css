@@ -221,11 +221,12 @@ main {
 
 .navbar-toggler-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    margin-right: 15px;
+    margin-bottom: 7px;
 }
 
-/* Ajuste para alinear visualmente los iconos de la navbar móvil con el campo de búsqueda */
-.navbar-mobile-icon-adjust {
-    transform: translateY(-5px) !important; /* Ajusta este valor si necesitas moverlo más arriba o abajo */
+.btn btn-link nav-button-style p-0{
+    margin-bottom: 5px;
 }
 
 /* Estilos para los Offcanvas */
@@ -578,6 +579,7 @@ footer .list-inline-item .fab:hover {
     .card-img-top {
         height: 250px; /* Altura de imagen de producto un poco más grande */
     }
+    
 }
 
 /* Dispositivos grandes (ej. desktops, 992px y más) */
@@ -609,6 +611,8 @@ footer .list-inline-item .fab:hover {
         width: auto !important;
         margin-top: 0 !important;
     }
+
+    
 
     /* El navbar-collapse contiene los enlaces centrales */
     #navbarNavDesktop {
@@ -655,6 +659,8 @@ footer .list-inline-item .fab:hover {
         border-radius: 0.5rem;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
+    
+    
 }
 
 /* Media Query para móvil (hasta 991.98px) */
@@ -711,23 +717,30 @@ footer .list-inline-item .fab:hover {
     /* Botones de toggler y usuario en la navbar móvil */
     .navbar.d-lg-none .navbar-toggler,
     .navbar.d-lg-none .btn-link {
-        font-size: 1.3rem; /* Reduce un poco el tamaño de los íconos del menú y usuario */
+        font-size: 1.3rem;
         color: var(--color-white) !important;
-        border: none; /* Asegura que no tengan borde extra */
-        padding: 0.15rem 0.4rem; /* Ajusta el padding para que no se vean tan grandes */
+        border: none;
+        height: 38px; /* Asegura la misma altura que el campo de búsqueda y botón */
+        display: flex; /* Habilita flexbox para centrar el ícono */
+        align-items: center; /* Centra verticalmente el ícono */
+        justify-content: center; /* Centra horizontalmente el ícono */
+        padding: 0; /* Remueve el padding ya que la altura es fija y centramos con flex */
     }
 
-    /* Estilo del botón de usuario en la navbar móvil */
+    /* Estilo del botón de usuario en la navbar móvil (reconfirmar si estas reglas son necesarias o se sobrescriben) */
     .navbar.d-lg-none .btn-link.nav-button-style {
         border: none !important;
         background-color: transparent !important;
-        padding: 0; /* Quita el padding si el ícono ya es grande */
     }
     .navbar.d-lg-none .btn-link.nav-button-style:hover {
         transform: none;
         box-shadow: none;
         color: var(--matcha-manga-light-green) !important;
     }
+
+    .mb-0 {
+    text-align: center;
+}
 
     /* Opcional: para pantallas muy muy pequeñas (como iPhone SE verticalmente) */
     @media (max-width: 400px) {
@@ -749,7 +762,8 @@ footer .list-inline-item .fab:hover {
         .navbar.d-lg-none .navbar-toggler,
         .navbar.d-lg-none .btn-link {
             font-size: 1.2rem;
-            padding: 0.1rem 0.3rem;
+            height: 36px; /* Ajuste de altura para pantallas muy pequeñas */
         }
+        
     }
 }
