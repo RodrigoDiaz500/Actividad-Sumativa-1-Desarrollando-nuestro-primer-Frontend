@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     localStorage.setItem('users', JSON.stringify(users));
 
     let comicsData = JSON.parse(localStorage.getItem('comicsData')) || [
-        // Tus datos de productos aquí (asegúrate de que estén completos)
+        //  datos de productos aquí 
         { id: 1, title: 'Fullmetal Alchemist - Tomo 1', author: 'Hiromu Arakawa', price: 9.990, image: 'img/manga1.jpg', type: 'manga' },
         { id: 2, title: 'Shingeki no Kyojin - Tomo 1', author: 'Hajime Isayama', price: 11.990, image: 'img/manga2.jpg', type: 'manga' },
         { id: 3, title: 'JoJos Bizarre Adventure: Stardust Crusaders - Tomo 2', author: 'Hirohiko Araki', price: 16.990, type: 'manga', image: 'img/manga3.jpg' },
@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // El carrito se mantiene en sessionStorage para que sea por sesión.
     let cart = JSON.parse(sessionStorage.getItem('cart')) || [];
 
-    // --- Funciones de Utilidad para la Sesión ---
     function getCurrentUserRole() {
         return sessionStorage.getItem('userRole');
     }
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loggedInUserNameDropdownContainerDesktop = document.getElementById('loggedInUserNameDropdownContainerDesktop');
     const profileMenuItemDesktop = document.getElementById('profileMenuItemDesktop');
     const adminMenuItemDesktop = document.getElementById('adminMenuItemDesktop');
-    const userMenuDividerDesktop = document.getElementById('userMenuDividerDesktop'); // Si tienes un divisor en desktop
+    const userMenuDividerDesktop = document.getElementById('userMenuDividerDesktop'); 
     const logoutMenuItemDesktop = document.getElementById('logoutMenuItemDesktop');
     const loggedInUserNameDesktop = document.getElementById('loggedInUserNameDesktop'); // Para el nombre junto al ícono de usuario en desktop
     const loggedInUserNameDropdownDesktopText = document.getElementById('loggedInUserNameDropdownDesktopText'); // Para el nombre dentro del dropdown de desktop
@@ -97,9 +96,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartTotalSpan = document.getElementById('cartTotal');
     const simulatePurchaseBtn = document.getElementById('simulatePurchaseBtn');
     const clearCartBtn = document.getElementById('clearCartBtn');
-    const cartLink = document.getElementById('cartLink'); // Asumiendo que este es el botón/enlace para abrir el modal del carrito
+    const cartLink = document.getElementById('cartLink'); 
 
-    // --- Lógica de la Barra de Navegación Dinámica (Actualizada) ---
+    // --- Lógica de la Barra de Navegación Dinámica ---
     function updateNavbar() {
         const userRole = getCurrentUserRole();
         const userEmail = getCurrentUserEmail();
@@ -111,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (loggedInUserNameDropdownContainerDesktop) loggedInUserNameDropdownContainerDesktop.classList.toggle('d-none', !isLoggedIn);
         if (profileMenuItemDesktop) profileMenuItemDesktop.classList.toggle('d-none', !isLoggedIn);
-        if (userMenuDividerDesktop) userMenuDividerDesktop.classList.toggle('d-none', !isLoggedIn); // Mostrar/ocultar el divisor
+        if (userMenuDividerDesktop) userMenuDividerDesktop.classList.toggle('d-none', !isLoggedIn); 
         if (logoutMenuItemDesktop) logoutMenuItemDesktop.classList.toggle('d-none', !isLoggedIn);
 
         if (loggedInUserNameDesktop && isLoggedIn) loggedInUserNameDesktop.textContent = users[userEmail].fullName || userEmail.split('@')[0];
@@ -142,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createProductCardHtml(item) {
         let imagePath = item.image;
-        // Ajustar la ruta de la imagen si estamos en una subpágina (ej. pages/mangas.html)
+        // Ajustar la ruta de la imagen si estamos en una subpágina 
         const currentPagePath = window.location.pathname;
         if (currentPagePath.includes('/pages/')) {
             imagePath = '../' + item.image;
@@ -179,14 +178,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function loadProducts(searchQuery = '') {
         const normalizedSearchQuery = searchQuery.toLowerCase().trim();
 
-        // Determinar la página actual de forma más robusta
+
         const currentPagePath = window.location.pathname;
         const currentPageIsComics = currentPagePath.includes('comics.html');
         const currentPageIsMangas = currentPagePath.includes('mangas.html');
         const currentPageIsMain = currentPagePath.endsWith('index.html') || currentPagePath.endsWith('/');
 
         if (!comicsContainer && !mangasContainer) {
-            // No hay contenedores de productos en esta página, no es una página de catálogo.
+
             return;
         }
 
@@ -213,8 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        if (normalizedSearchQuery) { // Si hay una búsqueda activa
-            // Mostrar resultados de búsqueda en la página actual o redirigir
+        if (normalizedSearchQuery) { 
+            // Mostra resultados de búsqueda en la página actual o redirige
             if (comicsContainer && mangasContainer) { // En la página principal (index.html)
                 if (mangasFound.length > 0) {
                     mangasFound.forEach(item => {
@@ -271,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
-        attachAddToCartListeners(); // Volver a adjuntar listeners después de renderizar.
+        attachAddToCartListeners(); 
     }
 
 
@@ -281,12 +280,12 @@ document.addEventListener('DOMContentLoaded', function() {
             formElement.addEventListener('submit', function(event) {
                 event.preventDefault();
                 const query = inputElement.value;
-                // Redirige al index.html con el parámetro de búsqueda si no estás ya en el index
+                // Redirige al index.html con el parámetro de búsqueda si no está ya en el index
                 const currentPagePath = window.location.pathname;
                 if (!currentPagePath.endsWith('index.html') && !currentPagePath.endsWith('/')) {
                     let redirectPath = 'index.html';
                     if (currentPagePath.includes('/pages/')) {
-                        redirectPath = '../index.html'; // Si estás en pages/, sube un nivel
+                        redirectPath = '../index.html'; 
                     }
                     window.location.href = `${redirectPath}?q=${encodeURIComponent(query)}`;
                 } else {
@@ -407,19 +406,18 @@ document.addEventListener('DOMContentLoaded', function() {
         clearCartBtn.addEventListener('click', clearCart);
     }
 
-// ... (tu código anterior de script.js) ...
-
+    // Cargar productos al inicio
 if (simulatePurchaseBtn) {
     simulatePurchaseBtn.addEventListener('click', function(event) {
         event.preventDefault(); // Evita el comportamiento por defecto del enlace
 
-        // 1. Verificar si el carrito está vacío
+        //  Verificar si el carrito está vacío
         if (cart.length === 0) {
             alert('El carrito está vacío. Añade productos para simular una compra.');
             return;
         }
 
-        // 2. Verificar si el usuario ha iniciado sesión
+        //  Verificar si el usuario ha iniciado sesión
         if (!getCurrentUserRole()) {
             alert('Debes iniciar sesión para simular una compra.');
             const cartModalElement = document.getElementById('cartModal');
@@ -428,20 +426,17 @@ if (simulatePurchaseBtn) {
 
             const currentPagePath = window.location.pathname;
             if (currentPagePath.includes('/pages/')) {
-                window.location.href = 'login.html'; // De pages/x.html a pages/login.html
+                window.location.href = 'login.html'; 
             } else {
-                window.location.href = 'pages/login.html'; // De index.html a pages/login.html
+                window.location.href = 'pages/login.html'; 
             }
             return;
         }
 
-        // 3. Compra exitosa:
-        // Puedes mantener este alert si quieres, o quitarlo si prefieres ir directo a la página de éxito
-        alert('¡Compra simulada con éxito! Tu pedido ha sido procesado.'); 
-        
+        // Compra exitosa:
         // Limpiar el carrito y el almacenamiento de sesión
         cart = [];
-        sessionStorage.removeItem('cart'); // Asegurarse de limpiar el carrito de sessionStorage
+        sessionStorage.removeItem('cart'); // limpia el carrito de sessionStorage
         
         // Actualizar la visualización del carrito
         updateCartDisplay();
@@ -453,21 +448,18 @@ if (simulatePurchaseBtn) {
             cartModal.hide();
         }
 
-        // --- ÚNICO CAMBIO: Redirigir a la página de pago exitoso (usando el nombre 'simulated-payment.html') ---
+        // Redirigir a la página de pago exitoso  ---
         const currentPagePath = window.location.pathname;
         if (currentPagePath.includes('/pages/')) {
-            // Si la página actual ya está en una subcarpeta (ej. 'pages/mangas.html'),
-            // la redirección a 'simulated-payment.html' es relativa a esa misma carpeta.
+
             window.location.href = 'simulated-payment.html'; 
         } else {
-            // Si la página actual es la raíz (ej. 'index.html'),
-            // la redirección debe ir a la subcarpeta 'pages/'.
+            
             window.location.href = 'pages/simulated-payment.html';
         }
     });
 }
 
-// ... (resto de tu script.js) ...
 
     // --- Manejo de Eventos de Logout (para ambos enlaces de logout) ---
     function setupLogoutListeners() {
@@ -477,7 +469,7 @@ if (simulatePurchaseBtn) {
             sessionStorage.removeItem('userRole');
             sessionStorage.removeItem('currentUserEmail');
             cart = []; // Vacía el carrito al cerrar sesión
-            sessionStorage.removeItem('cart'); // Asegurarse de limpiar el carrito de sessionStorage
+            sessionStorage.removeItem('cart'); //limpia el carrito de sessionStorage
 
             alert('Has cerrado sesión correctamente.');
             updateNavbar(); // Actualiza la navbar para mostrar los elementos de "login/register"
@@ -485,18 +477,18 @@ if (simulatePurchaseBtn) {
             // Redirige a la página principal, ajustando la ruta si es necesario
             const currentPagePath = window.location.pathname;
             if (currentPagePath.includes('/pages/')) {
-                window.location.href = '../index.html'; // Si estás en pages/, sube un nivel
+                window.location.href = '../index.html'; 
             } else {
-                window.location.href = 'index.html'; // Si ya estás en la raíz, recarga o quédate
+                window.location.href = 'index.html'; 
             }
         };
 
-        // Adjuntar el listener al enlace de logout de escritorio si existe
+        // Adjunta el listener al enlace de logout de escritorio si existe
         if (logoutLinkDesktop) {
             logoutLinkDesktop.removeEventListener('click', performLogout); // Evitar duplicados
             logoutLinkDesktop.addEventListener('click', performLogout);
         }
-        // Adjuntar el listener al enlace de logout del offcanvas si existe
+        // Adjunta el listener al enlace de logout del offcanvas si existe
         if (logoutLinkOffcanvas) {
             logoutLinkOffcanvas.removeEventListener('click', performLogout); // Evitar duplicados
             logoutLinkOffcanvas.addEventListener('click', performLogout);
@@ -715,7 +707,7 @@ if (simulatePurchaseBtn) {
                     confirmNewPassword.classList.add('is-valid');
                 }
             } else {
-                // Limpiar validaciones si no se está cambiando la contraseña
+                
                 currentPassword.classList.remove('is-invalid', 'is-valid');
                 if (currentPassword.nextElementSibling) currentPassword.nextElementSibling.textContent = '';
                 newPassword.classList.remove('is-invalid', 'is-valid');
@@ -728,7 +720,7 @@ if (simulatePurchaseBtn) {
 
             if (formIsValid) {
                 currentUserData.fullName = profileFullName.value;
-                currentUserData.email = profileEmail.value; // Considera si el email puede cambiar o si debe ser solo lectura
+                currentUserData.email = profileEmail.value; // No se permite cambiar el email en el perfil
                 currentUserData.address = profileAddress.value;
                 currentUserData.phone = profilePhone.value;
 
@@ -867,7 +859,7 @@ if (simulatePurchaseBtn) {
     }
 
 
-    // --- Inicialización al Cargar la Página ---
+
     // Estas funciones se llaman al cargar el DOM
     updateNavbar(); // Primero, actualiza el estado de la barra de navegación
     setupLogoutListeners(); // Configura los listeners de logout para ambos enlaces
@@ -881,4 +873,4 @@ if (simulatePurchaseBtn) {
         cartModalElement.addEventListener('show.bs.modal', updateCartDisplay);
     }
 
-}); // Fin del DOMContentLoaded
+});

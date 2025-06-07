@@ -1,6 +1,5 @@
-/* -------------------------------------------------------------------------- */
+
 /* Paleta de Colores y Variables Personalizadas                               */
-/* -------------------------------------------------------------------------- */
 :root {
     /* Verdes Matcha */
     --matcha-manga-green: #74A12E; /* Verde matcha principal */
@@ -8,31 +7,27 @@
     --matcha-manga-light-green: #90EE90; /* Un verde más claro para detalles o contrastes suaves */
 
     /* Rojos/Complementarios (originalmente --bs-warning) */
-    --matcha-manga-red: #DB4B5C; /* El color de fondo que usabas en el navbar */
+    --matcha-manga-red: #DB4B5C; /* El color de fondo que se usa en el navbar */
     --matcha-manga-dark-red: #B53F4E; /* Tono más oscuro para hover */
-    --matcha-manga-salmon: #ecb642; /* Un rosa/salmón suave, complementario */
-    --matcha-manga-dark-salmon: #e68911; /* Un rosa/salmón suave, complementario */
+    --matcha-manga-salmon: #ecb642;  
+    --matcha-manga-dark-salmon: #e68911;
 
-    /* Neutros */
-    --color-text-dark: #212529; /* Negro oscuro para texto principal */
-    --color-text-light: #F8F9FA; /* Blanco grisáceo para texto sobre fondos oscuros */
-    --color-background-light: #F8F9FA; /* Fondo general claro */
-    --color-background-dark: #343A40; /* Fondo general oscuro (para footer/navbar) */
-    --color-white: #FFFFFF; /* Blanco puro para elementos específicos */
-    --color-gray-light: #F0F0F0; /* Gris muy claro para fondos de botones/cards */
-    --color-gray-medium: #dee2e6; /* Gris medio para bordes */
-
+    --color-text-dark: #212529; 
+    --color-text-light: #F8F9FA; 
+    --color-background-light: #F8F9FA; 
+    --color-background-dark: #343A40; 
+    --color-white: #FFFFFF; 
+    --color-gray-light: #F0F0F0; 
+    --color-gray-medium: #dee2e6; 
 
     /* Bootstrap Overrides (para mantener la coherencia con tu paleta) */
     --bs-primary: var(--matcha-manga-green); /* Botones primarios de Bootstrap */
-    --bs-warning: var(--matcha-manga-salmon); /* Usando el salmón para la advertencia si aplica */
+    --bs-warning: var(--matcha-manga-salmon); 
     --bs-danger: var(--matcha-manga-red); /* Color de eliminación */
     --bs-success: var(--matcha-manga-green); /* Color de éxito */
 }
+/* Globales  */
 
-/* -------------------------------------------------------------------------- */
-/* 1. Globales y Resets                                                     */
-/* -------------------------------------------------------------------------- */
 html {
     scroll-behavior: smooth; /* Desplazamiento suave para anclas */
 }
@@ -100,18 +95,18 @@ a:hover {
     text-decoration: underline;
 }
 
-/* -------------------------------------------------------------------------- */
-/* 2. Contenido Principal                                                   */
-/* -------------------------------------------------------------------------- */
+
+/* 2. Contenido Principal  */
+
 main {
     flex-grow: 1; /* Ocupa el espacio restante para empujar el footer hacia abajo */
     padding-top: 2rem;
     padding-bottom: 2rem;
 }
 
-/* -------------------------------------------------------------------------- */
-/* 3. Navbar y Offcanvas                                                    */
-/* -------------------------------------------------------------------------- */
+
+/* 3. Navbar y Offcanvas  */
+
 
 /* Navbar General (aplicará a ambas si no se sobreescribe) */
 .navbar {
@@ -137,7 +132,7 @@ main {
     transform: rotate(5deg) scale(1.1);
 }
 
-/* Estilo para TODOS los botones de la navbar (incluyendo el buscador y el dropdown toggle) */
+/* Estilo para todos los botones de la navbar (incluyendo el buscador y el dropdown toggle) */
 .nav-button-style {
     color: var(--color-white) !important;
     border: 1px solid var(--matcha-manga-light-green);
@@ -291,9 +286,8 @@ main {
 }
 
 
-/* -------------------------------------------------------------------------- */
-/* 4. Cards de Productos                                                    */
-/* -------------------------------------------------------------------------- */
+/* 4. Cards de Productos  */
+
 .card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     border-radius: 0.75rem;
@@ -354,14 +348,14 @@ main {
 }
 
 .shadow-lg {
-    margin-bottom: 100px; /* Mantener este si es un estilo específico de un elemento */
+    margin-bottom: 100px; 
 }
 
-/* -------------------------------------------------------------------------- */
-/* 5. Botones (General y Específicos)                                       */
-/* -------------------------------------------------------------------------- */
 
-/* Botones de Bootstrap en general (para asegurar consistencia si los usas en otros lugares) */
+/* 5. Botones (General y Específicos)   */
+
+
+/* Botones de Bootstrap en general (para asegurar consistencia si se usas en otros lugares) */
 .btn {
     border-radius: 0.3rem;
     font-weight: 600;
@@ -392,7 +386,7 @@ main {
 .btn-warning {
     background-color: var(--matcha-manga-salmon);
     border-color: var(--matcha-manga-salmon);
-    color: var(--color-text-light); /* Texto claro sobre salmón */
+    color: var(--color-text-light); /* Texto claro sobre amarillo */
 }
 
 .btn-warning:hover {
@@ -416,7 +410,7 @@ main {
     background-color: var(--matcha-manga-green);
     border-color: var(--matcha-manga-green);
     color: var(--color-white);
-    /* width: 100%; */ /* Eliminar si no todos los botones success son 100% ancho */
+    /* width: 100%; */ /* */
 }
 
 .btn-success:hover {
@@ -424,9 +418,8 @@ main {
     border-color: var(--matcha-manga-dark-green);
 }
 
-/* -------------------------------------------------------------------------- */
-/* 6. Formularios y Modales                                                 */
-/* -------------------------------------------------------------------------- */
+/* 6. Formularios y Modales  */
+
 .form-control:focus {
     border-color: var(--matcha-manga-green);
     box-shadow: 0 0 0 0.25rem rgba(116, 161, 46, 0.25);
@@ -446,7 +439,7 @@ main {
 }
 
 .modal-header .btn-close {
-    filter: invert(1) grayscale(100%) brightness(200%); /* Hace que el botón de cerrar sea blanco */
+    filter: invert(1) grayscale(100%) brightness(200%); 
     opacity: 0.8;
 }
 
@@ -456,7 +449,7 @@ main {
 
 .modal-footer {
     border-top: 1px solid var(--color-gray-light);
-    background-color: var(--color-background-light); /* Fondo claro para el pie del modal */
+    background-color: var(--color-background-light); 
     border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
@@ -475,9 +468,9 @@ main {
     font-size: 0.75rem;
 }
 
-/* -------------------------------------------------------------------------- */
-/* 7. Tablas (Específico para Admin Dashboard)                               */
-/* -------------------------------------------------------------------------- */
+
+/* 7. Tablas (Específico para Admin Dashboard)  */
+
 .table {
     border-radius: 0.5rem;
     overflow: hidden; /* Asegura que los bordes redondeados se apliquen a la tabla */
@@ -507,9 +500,9 @@ main {
 }
 
 
-/* -------------------------------------------------------------------------- */
-/* 8. Footer                                                                */
-/* -------------------------------------------------------------------------- */
+
+/* 8. Footer  */
+
 footer {
     background-color: var(--color-background-dark); /* Asegura el fondo oscuro */
     color: var(--color-text-light); /* Asegura el texto blanco */
@@ -549,7 +542,7 @@ footer .list-inline-item .fab:hover {
     color: var(--matcha-manga-light-green);
 }
 
-/* Alineaciones específicas que tenías en el footer */
+/* Alineaciones específicas  */
 .mb-0 {
     text-align: end;
 }
@@ -562,13 +555,13 @@ footer .list-inline-item .fab:hover {
     text-align: center;
 }
 
-/* -------------------------------------------------------------------------- */
-/* 9. Media Queries (Ajustes de Responsividad)                              */
-/* -------------------------------------------------------------------------- */
 
-/* Pequeños dispositivos (ej. landscape phones, 576px y más) */
+/* 9. Media Queries  */
+
+
+/* Pequeños dispositivos (576px y más) */
 @media (min-width: 576px) {
-    /* Puedes añadir ajustes aquí si son necesarios */
+
 }
 
 /* Dispositivos medianos (ej. tablets, 768px y más) */
@@ -707,7 +700,7 @@ footer .list-inline-item .fab:hover {
         justify-content: center;
     }
 
-    #searchFormMobile .btn span { /* Para ocultar cualquier texto si lo tuvieras */
+    #searchFormMobile .btn span { /* Oculta el texto "Buscar" en el botón de búsqueda */
         display: none;
     }
     #searchFormMobile .btn .fas { /* Asegura que el ícono sea visible */
@@ -727,7 +720,7 @@ footer .list-inline-item .fab:hover {
         padding: 0; /* Remueve el padding ya que la altura es fija y centramos con flex */
     }
 
-    /* Estilo del botón de usuario en la navbar móvil (reconfirmar si estas reglas son necesarias o se sobrescriben) */
+    /* Estilo del botón de usuario en la navbar móvil  */
     .navbar.d-lg-none .btn-link.nav-button-style {
         border: none !important;
         background-color: transparent !important;
@@ -742,7 +735,7 @@ footer .list-inline-item .fab:hover {
     text-align: center;
 }
 
-    /* Opcional: para pantallas muy muy pequeñas (como iPhone SE verticalmente) */
+    /* para pantallas muy muy pequeñas (como iPhone SE verticalmente) */
     @media (max-width: 400px) {
         .navbar.d-lg-none {
             padding: 0.4rem 0.5rem; /* Más reducción en el padding general */
